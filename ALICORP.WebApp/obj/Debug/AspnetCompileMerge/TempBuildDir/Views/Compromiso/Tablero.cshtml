@@ -1,0 +1,423 @@
+﻿@{
+    ViewBag.Title = "Tablero";
+}
+
+<link rel="stylesheet" href="~/Content/plugins/fullcalendar/main.min.css" />
+<link rel="stylesheet" href="~/Content/plugins/fullcalendar-daygrid/main.min.css">
+<link rel="stylesheet" href="~/Content/plugins/fullcalendar-timegrid/main.min.css">
+<link rel="stylesheet" href="~/Content/plugins/fullcalendar-bootstrap/main.min.css">
+<style>
+    .compromiso {
+        margin-bottom: 4px;
+        cursor: move;
+        box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+        border-radius: .25rem;
+        padding: 5px 10px;
+    }
+</style>
+<div class="row">
+    <div class="col-md">
+        <div class="row">
+            <div class="col-md-12 col-sm-6">
+
+                <div class="card card-default">
+                    <div class="card-header text-dark drop-nuevo">
+                        <h3 class="card-title">NUEVO</h3>
+                    </div>
+                    <div class="card-body list-compromisos">
+                        <div class="compromiso bg-light" data-codigo="C-00001">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00001</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-light" data-codigo="C-00002">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00002</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-light" data-codigo="C-00003">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00003</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-light" data-codigo="C-00004">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00004</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-light" data-codigo="C-00005">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00005</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-6">
+                <div class="card card-default">
+                    <div class="card-header bg-pink">
+                        <h3 class="card-title text-white">PENDIENTES</h3>
+                    </div>
+                    <div class="card-body list-compromisos">
+                        <div class="compromiso bg-light" data-codigo="C-00001">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00001</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-danger" data-codigo="C-00002">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00002</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-info" data-codigo="C-00003">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00003</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-warning" data-codigo="C-00004">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00004</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-primary" data-codigo="C-00005">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00005</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card card-default">
+            <div id="calendar"></div>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="row">
+            <div class="col-md-12 col-sm-6">
+                <div class="card card-default">
+                    <div class="card-header bg-warning">
+                        <h3 class="card-title text-dark">POR VERIFICAR</h3>
+                    </div>
+                    <div class="card-body list-compromisos">
+                        <div class="compromiso bg-light" data-codigo="C-00001">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00001</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-danger" data-codigo="C-00002">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00002</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-info" data-codigo="C-00003">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00003</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-warning" data-codigo="C-00004">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00004</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-primary" data-codigo="C-00005">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00005</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-6">
+                <div class="card card-default">
+                    <div class="card-header bg-danger">
+                        <h3 class="card-title text-white">FUERA DE FECHA</h3>
+                    </div>
+                    <div class="card-body list-compromisos">
+                        <div class="compromiso bg-light" data-codigo="C-00001">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00001</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-danger" data-codigo="C-00002">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00002</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-info" data-codigo="C-00003">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00003</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-warning" data-codigo="C-00004">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00004</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-primary" data-codigo="C-00005">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00005</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-sm">
+        <div class="card card-default">
+            <div class="card-header bg-dark">
+                <h3 class="card-title text-white">PROMAN</h3>
+            </div>
+            <div class="card-body list-compromisos">
+                <div class="compromiso bg-light" data-codigo="C-00001">
+                    @*<p class="text-center mb-0 font-weight-bold">C-00001</p>*@
+                    <p class="mb-0">Breve descripción</p>
+                </div>
+                <div class="compromiso bg-light" data-codigo="C-00002">
+                    @*<p class="text-center mb-0 font-weight-bold">C-00002</p>*@
+                    <p class="mb-0">Breve descripción</p>
+                </div>
+                <div class="compromiso bg-light" data-codigo="C-00003">
+                    @*<p class="text-center mb-0 font-weight-bold">C-00003</p>*@
+                    <p class="mb-0">Breve descripción</p>
+                </div>
+                <div class="compromiso bg-light" data-codigo="C-00004">
+                    @*<p class="text-center mb-0 font-weight-bold">C-00004</p>*@
+                    <p class="mb-0">Breve descripción</p>
+                </div>
+                <div class="compromiso bg-light" data-codigo="C-00005">
+                    @*<p class="text-center mb-0 font-weight-bold">C-00005</p>*@
+                    <p class="mb-0">Breve descripción</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="card card-default">
+            <div class="card-header bg-success">
+                <h3 class="card-title text-white">GERENCIA</h3>
+            </div>
+            <div class="card-body list-compromisos">
+                <div class="compromiso bg-light" data-codigo="C-00001">
+                    @*<p class="text-center mb-0 font-weight-bold">C-00001</p>*@
+                    <p class="mb-0">Breve descripción</p>
+                </div>
+                <div class="compromiso bg-danger" data-codigo="C-00002">
+                    @*<p class="text-center mb-0 font-weight-bold">C-00002</p>*@
+                    <p class="mb-0">Breve descripción</p>
+                </div>
+                <div class="compromiso bg-info" data-codigo="C-00003">
+                    @*<p class="text-center mb-0 font-weight-bold">C-00003</p>*@
+                    <p class="mb-0">Breve descripción</p>
+                </div>
+                <div class="compromiso bg-warning" data-codigo="C-00004">
+                    @*<p class="text-center mb-0 font-weight-bold">C-00004</p>*@
+                    <p class="mb-0">Breve descripción</p>
+                </div>
+                <div class="compromiso bg-primary" data-codigo="C-00005">
+                    @*<p class="text-center mb-0 font-weight-bold">C-00005</p>*@
+                    <p class="mb-0">Breve descripción</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="card card-default">
+            <div class="card-header bg-primary">
+                <h3 class="card-title text-white">DIRECCIÓN</h3>
+            </div>
+            <div class="card-body list-compromisos">
+                <div class="compromiso bg-light" data-codigo="C-00001">
+                    @*<p class="text-center mb-0 font-weight-bold">C-00001</p>*@
+                    <p class="mb-0">Breve descripción</p>
+                </div>
+                <div class="compromiso bg-danger" data-codigo="C-00002">
+                    @*<p class="text-center mb-0 font-weight-bold">C-00002</p>*@
+                    <p class="mb-0">Breve descripción</p>
+                </div>
+                <div class="compromiso bg-info" data-codigo="C-00003">
+                    @*<p class="text-center mb-0 font-weight-bold">C-00003</p>*@
+                    <p class="mb-0">Breve descripción</p>
+                </div>
+                <div class="compromiso bg-warning" data-codigo="C-00004">
+                    @*<p class="text-center mb-0 font-weight-bold">C-00004</p>*@
+                    <p class="mb-0">Breve descripción</p>
+                </div>
+                <div class="compromiso bg-primary" data-codigo="C-00005">
+                    @*<p class="text-center mb-0 font-weight-bold">C-00005</p>*@
+                    <p class="mb-0">Breve descripción</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+<script src="~/Content/plugins/fullcalendar/main.min.js"></script>
+<script src="~/Content/plugins/fullcalendar-daygrid/main.min.js"></script>
+<script src="~/Content/plugins/fullcalendar-timegrid/main.min.js"></script>
+<script src="~/Content/plugins/fullcalendar-interaction/main.min.js"></script>
+<script src="~/Content/plugins/fullcalendar-bootstrap/main.min.js"></script>
+
+<script src="~/Content/plugins/fullcalendar/locales/es.js"></script>
+<script>
+    $(function () {
+        /* initialize the calendar
+         -----------------------------------------------------------------*/
+        //Date for the calendar events (dummy data)
+
+        var Calendar = FullCalendar.Calendar;
+        var Draggable = FullCalendarInteraction.Draggable;
+
+        var checkbox = document.getElementById('drop-remove');
+        var calendarEl = document.getElementById('calendar');
+
+        // initialize the external events
+        // -----------------------------------------------------------------
+
+        document.querySelectorAll('.list-compromisos').forEach(selector => {
+            new Draggable(selector, {
+                itemSelector: '.compromiso',
+                eventData: function (eventEl) {
+                    return {
+                        title: eventEl.dataset.codigo,
+                        backgroundColor: window.getComputedStyle(eventEl, null).getPropertyValue('background-color'),
+                        borderColor: window.getComputedStyle(eventEl, null).getPropertyValue('background-color'),
+                        textColor: window.getComputedStyle(eventEl, null).getPropertyValue('color'),
+                    };
+                }
+            });
+        });
+
+        var calendar = new Calendar(calendarEl, {
+            locale: 'es',
+            plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid'],
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: ''
+            },
+            'themeSystem': 'bootstrap',
+            events: [],
+            editable: true,
+            eventLimit: true,
+            droppable: true, // this allows things to be dropped onto the calendar !!!,
+            drop: function (info) {
+                info.draggedEl.parentNode.removeChild(info.draggedEl);  
+            },
+            eventRender: function ({ event, el }) {
+                $(el).bind('dblclick', function () {
+                    alert('double click! ' + event.title + event.id);
+                });
+            },
+            eventDragStop: function ({ event, jsEvent }) {
+                var trashEl = $('.drop-nuevo');
+                var ofs = trashEl.offset();
+
+                var x1 = ofs.left;
+                var x2 = ofs.left + trashEl.outerWidth(true);
+                var y1 = ofs.top;
+                var y2 = ofs.top + trashEl.outerHeight(true);
+
+                if (jsEvent.pageX >= x1 && jsEvent.pageX <= x2 &&
+                    jsEvent.pageY >= y1 && jsEvent.pageY <= y2) {
+                    event.remove();
+                }
+            }
+        });
+
+        calendar.render();
+
+        $(".drop-nuevo").droppable({
+            drop: function (event, ui) {
+                console.log(event);
+                $(this)
+                    .addClass("ui-state-highlight")
+                    .find("p")
+                    .html("Dropped!");
+            }
+        });
+
+
+        //document.querySelectorAll('#list1 button').forEach((button) => {
+        //    button.addEventListener('dragstart', function (event) {
+        //        console.log('dragstart');
+        //        event.target.style.opacity = .5;
+        //    });
+        //    button.addEventListener('dragend', function (event) {
+        //        console.log(event);
+        //        event.target.style.opacity = "";
+        //    });
+        //    //button.addEventListener('dragover', function () {
+        //    //    console.log('dragover');
+        //    //});
+        //    //button.addEventListener('dragenter', function () {
+        //    //    console.log('dragenter');
+        //    //});
+        //});
+
+
+        //document.addEventListener("drop", function (event) {
+        //    // prevent default action (open as link for some elements)
+        //    event.preventDefault();
+        //    // move dragged elem to the selected drop target
+
+        //    if (event.target.className == "dropzone") {
+        //        event.target.style.background = "";
+        //        dragged.parentNode.removeChild(dragged);
+        //        event.target.appendChild(dragged);
+        //    }
+
+        //}, false);
+
+    });
+
+
+    //var dragged;
+
+    ///* events fired on the draggable target */
+    //document.addEventListener("drag", function (event) {
+
+    //}, false);
+
+    //document.addEventListener("dragstart", function (event) {
+    //    // store a ref. on the dragged elem
+    //    dragged = event.target;
+    //    // make it half transparent
+    //    //event.target.style.opacity = .5;
+    //}, false);
+
+    //document.addEventListener("dragend", function (event) {
+    //    // reset the transparency
+    //    //event.target.style.opacity = "";
+    //}, false);
+
+    ///* events fired on the drop targets */
+    //document.addEventListener("dragover", function (event) {
+    //    // prevent default to allow drop
+    //    event.preventDefault();
+    //}, false);
+
+    //document.addEventListener("dragenter", function (event) {
+    //    // highlight potential drop target when the draggable element enters it
+    //    if (event.target.className == "dropzone") {
+    //        event.target.style.background = "purple";
+    //    }
+
+    //}, false);
+
+    //document.addEventListener("dragleave", function (event) {
+    //    // reset background of potential drop target when the draggable element leaves it
+    //    if (event.target.className == "dropzone") {
+    //        event.target.style.background = "";
+    //    }
+
+    //}, false);
+
+    //document.addEventListener("drop", function (event) {
+    //    // prevent default action (open as link for some elements)
+    //    event.preventDefault();
+    //    console.log(event.target);
+    //    // move dragged elem to the selected drop target
+    //    if (event.target.className == "dropzone") {
+    //        event.target.style.background = "";
+    //        dragged.parentNode.removeChild(dragged);
+    //        event.target.appendChild(dragged);
+    //    }
+
+    //    //if (event.target.className == "fc-day") {
+    //    //    calendar.addEvent({
+    //    //        title: 'dynamic event',
+    //    //        start: event.target.dataset.date,
+    //    //        allDay: true
+    //    //    });
+    //    //}
+    //}, false);
+</script>

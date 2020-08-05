@@ -1,0 +1,148 @@
+﻿@{
+    ViewBag.Title = "Nueva Lista de Verificación";
+}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-default">
+                <div class="card-header">
+                    <h3 class="card-title"><i class="fas fa-user-check"></i>&nbsp;Realizar Verificacion</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="col-3">
+                            <input class="form-control" placeholder="Fecha" />
+                        </div>
+                        <div class="col-3">
+                            <input class="form-control" placeholder="Hora" />
+                        </div>
+                        <div class="col-6">
+                            <input class="form-control" placeholder="Observador" />
+                        </div>
+                    </div>
+
+                    <div class="form-row mt-2">
+                        <div class="col-6">
+                            <input class="form-control" placeholder="DdD" />
+                        </div>
+                        <div class="col-6">
+                            <input class="form-control" placeholder="Encargado DdD" />
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="text-center">
+                        <button type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp; Guardar</button>
+                        <a role="button" class="btn btn-warning" href="/ListaVerificacion/Index"><i class="fa fa-chevron-left"></i>&nbsp; Retroceder</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-4  bg-white text-center font-weight-bold">Escala de evaluación</div>
+                <div class="col bg-white text-center font-weight-bold border border-warning">1</div>
+                <div class="col bg-white text-center font-weight-bold border border-warning">2</div>
+                <div class="col bg-white text-center font-weight-bold border border-warning">3</div>
+            </div>
+            <br />
+        </div>
+        <div class="col-12">
+            <div class="card card-default">
+                <div class="card-header bg-blue">
+                    <h3 class="card-title text-white">1.&nbsp;ASPECTOS GENERALES</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <b>Ejecución: </b>El DdD
+                        </div>
+                        <div class="col">
+                            <label class="btn btn-block btn-outline-secondary active">
+                                <input type="radio" name="options" id="option1" checked hidden /> No se realizó, se reagendó o duró menos de lo establecido (< 6min)
+                            </label>
+                        </div>
+                        <div class="col">
+                            <label class="btn btn-block btn-outline-secondary">
+                                <input type="radio" name="options" id="option2" hidden /> Se realizó, pero se extendió (>13 min)
+                            </label>
+                        </div>
+                        <div class="col">
+                            <label class="btn btn-block btn-outline-secondary">
+                                <input type="radio" name="options" id="option3" hidden /> Se realizó de acuerdo a duración planificada
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <b>Agenda: </b>La agenda del DdD
+                        </div>
+                        <div class="col">
+                            <label class="btn btn-block btn-outline-secondary active">
+                                <input type="radio" name="options2" checked hidden /> No se siguió la agenda establecida
+                            </label>
+                        </div>
+                        <div class="col">
+                            <label class="btn btn-block btn-outline-secondary">
+                                <input type="radio" name="options2" hidden /> Se siguió parcialmente la agenda establecida
+                            </label>
+                        </div>
+                        <div class="col">
+                            <label class="btn btn-block btn-outline-secondary">
+                                <input type="radio" name="options2" hidden /> Se realizó de acuerdo a duración planificada
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <b>Inicio del DdD:</b>El DdD incluye un mensaje de seguridad / clasificación de seguridad
+                        </div>
+                        <div class="col">
+                            <label class="btn btn-block btn-outline-secondary active">
+                                <input type="radio" name="options2" checked hidden />No
+                            </label>
+                        </div>
+                        <div class="col">
+                            <label class="btn btn-block btn-outline-secondary">
+                                <input type="radio" name="options2" hidden /> Sí, pero de baja calidad
+                            </label>
+                        </div>
+                        <div class="col">
+                            <label class="btn btn-block btn-outline-secondary">
+                                <input type="radio" name="options2" hidden /> Sí y fue con calidad
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="card card-default">
+                <div class="card-header bg-blue">
+                    <h3 class="card-title text-white">2.&nbsp;COMPROMISOS DE DdD ANTERIOR</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <b>Compromisos previos: </b>Las acciones comprometidas fueron revisadas
+                        </div>
+                        <div class="col">
+                            <label class="btn btn-block btn-outline-secondary active">
+                                <input type="radio" name="options" id="option1" checked hidden /> No
+                            </label>
+                        </div>
+                        <div class="col">
+                            <label class="btn btn-block btn-outline-secondary">
+                                <input type="radio" name="options" id="option2" hidden /> Se realizó, pero se extendió (>13 min)
+                            </label>
+                        </div>
+                        <div class="col">
+                            <label class="btn btn-block btn-outline-secondary">
+                                <input type="radio" name="options" id="option3" hidden /> Se realizó de acuerdo a duración planificada
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

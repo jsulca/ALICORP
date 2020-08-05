@@ -1,0 +1,10 @@
+﻿<div class="text-danger">
+    @if (!ViewData.ModelState.IsValid)
+    {
+        @Html.ValidationSummary("", "")
+    }
+    else if (ViewBag.Message != null)
+    {
+        @ViewBag.Message
+    }
+</div>

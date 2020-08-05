@@ -1,0 +1,8 @@
+﻿@if (!ViewData.ModelState.IsValid)
+{
+    @Html.ValidationSummary("", "")
+}
+else if (ViewBag.Message != null)
+{
+    @ViewBag.Message
+}

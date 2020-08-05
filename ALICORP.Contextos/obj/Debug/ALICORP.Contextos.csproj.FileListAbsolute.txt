@@ -1,0 +1,6 @@
+C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Contextos\bin\Debug\ALICORP.Contextos.dll
+C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Contextos\bin\Debug\ALICORP.Contextos.pdb
+C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Contextos\obj\Debug\ALICORP.Contextos.csprojAssemblyReference.cache
+C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Contextos\obj\Debug\ALICORP.Contextos.csproj.CoreCompileInputs.cache
+C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Contextos\obj\Debug\ALICORP.Contextos.dll
+C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Contextos\obj\Debug\ALICORP.Contextos.pdb

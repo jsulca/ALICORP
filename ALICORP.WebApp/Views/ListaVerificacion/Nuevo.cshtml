@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.Title = "Nueva Lista de Verificación";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-user-check"></i>&nbsp;Nueva Verificacion</h3>
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="col-3">
+                        <input class="form-control" placeholder="Ingrese el proceso" />
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control" placeholder="Ingrese el sub-proceso" />
+                    </div>
+                    <div class="col-6">
+                        <input class="form-control" placeholder="Ingrese una descripción" />
+                    </div>
+                </div>
+                <hr />
+                <div class="text-center">
+                    <button type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp; Guardar</button>
+                    <a role="button" class="btn btn-warning" href="/ListaVerificacion/Modelar"><i class="fa fa-chevron-left"></i>&nbsp; Retroceder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-list"></i>&nbsp;Cuerpo del Formulario</h3>
+            </div>
+            <div class="card-body">
+                <div class="text-center">
+                    <button type="button" class="btn btn-info" id="btnAgregarCategoria"><i class="fa fa-ellipsis-v"></i>&nbsp; Agregar Categoria</button>
+                    <button type="button" class="btn btn-primary" id="btnAgregarPuntaje"><i class="fa fa-ellipsis-h"></i>&nbsp; Agregar Puntaje</button>
+                </div>
+                <hr />
+                <div class="table-responsive">
+                    <table class="table table-borderless table-valign-middle" id="tblFormulario">
+                        <thead>
+                            <tr>
+                                <th>Escala de evaluación</th>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-sm font-weight-bold text-center" value="1" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-sm font-weight-bold text-center" value="2" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-sm font-weight-bold text-center" value="3" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="bg-primary">
+                                <th width="40%">Preguntas</th>
+                                <th colspan="3">Respuestas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="categoria bg-info">
+                                <th colspan="4">
+                                    <div class="input-group">
+                                        <input class="form-control form-control-sm text-center" value="ASPECTOS GENERALES" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-sm btn-warning" type="button"><i class="fa fa-plus"></i>&nbsp; Agregar Pregunta</button>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="form-control form-control-sm font-weight-bold" placeholder="Titulo" value="Ejecución:" />
+                                    <input class="form-control form-control-sm" placeholder="Contenido" value="El DdD" />
+                                </td>
+                                <td>
+                                    <textarea class="form-control form-control-sm">No se realizó, se reagendó o duró menos de lo establecido (< 6min)</textarea>
+                                </td>
+                                <td>
+                                    <textarea class="form-control form-control-sm">Se realizó, pero se extendió (>13 min)</textarea>
+                                </td>
+                                <td>
+                                    <textarea class="form-control form-control-sm">Se realizó de acuerdo a duración planificada</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="form-control form-control-sm font-weight-bold" placeholder="Titulo" value="Agenda:" />
+                                    <input class="form-control form-control-sm" placeholder="Contenido" value="La agenda del DdD" />
+                                </td>
+                                <td>
+                                    <textarea class="form-control form-control-sm">No se siguió la agenda establecida</textarea>
+                                </td>
+                                <td>
+                                    <textarea class="form-control form-control-sm">Se siguió parcialmente la agenda establecida</textarea>
+                                </td>
+                                <td>
+                                    <textarea class="form-control form-control-sm">Se siguió por completo la agenda establecida</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="form-control form-control-sm font-weight-bold" placeholder="Titulo" value="Inicio del DdD:" />
+                                    <input class="form-control form-control-sm" placeholder="Contenido" value="El DdD incluye un mensaje de seguridad / clasificación de seguridad" />
+                                </td>
+                                <td>
+                                    <textarea class="form-control form-control-sm">No</textarea>
+                                </td>
+                                <td>
+                                    <textarea class="form-control form-control-sm">Sí, pero de baja calidad</textarea>
+                                </td>
+                                <td>
+                                    <textarea class="form-control form-control-sm">Sí y fue con calidad</textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function (){
+        $('#btnAgregarCategoria').click(function () {
+            var categoria = `<tr class="categoria bg-info">
+                                <th colspan="4">
+                                    <div class="input-group">
+                                        <input class="form-control form-control-sm text-center" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-sm btn-warning" type="button"><i class="fa fa-plus"></i>&nbsp; Agregar Pregunta</button>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>`;
+            $('#tblFormulario tbody').append(categoria);
+        });
+    });
+</script>

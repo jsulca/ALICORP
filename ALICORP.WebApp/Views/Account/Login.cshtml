@@ -1,0 +1,68 @@
+﻿@{Layout = null;}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - SIRNPD</title>
+    <!-- Favicon -->
+    <link href="~/favicon.ico" rel="icon" type="image/vnd.microsoft.icon" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/plugins/fontawesome-free/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/Content/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <!-- Site -->
+    <link href="~/Content/css/site.css" rel="stylesheet" />
+    <!-- Favicon -->
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="login-page">
+    <div class="login-box">
+        <div class="card">
+            <div class="card-body">
+                <div class="login-logo mb-0">
+                    <img src="~/Content/images/logo-alicorp.png" alt="Logo" />
+                </div>
+                <p class="login-box-msg">Ingrese para iniciar su sesión</p>
+                @using (Html.BeginForm("Login", "Account", new { @ReturnUrl = ViewData["ReturnUrl"] }, FormMethod.Post, new { @id = "form-login" }))
+                {
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Usuario" />
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Clave" />
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    if (!ViewData.ModelState.IsValid)
+                    {
+                        Html.RenderPartial("_Error");
+                    }
+                    <div class="row">
+                        <div class="col-8"></div>
+                        <div class="col-4">
+                            <a role="button" href="/" class="btn btn-danger btn-block">Ingresar</a>
+                        </div>
+                    </div>
+                }
+                @*<p class="mb-1">
+                    <a href="/Account/ForgotPassword">Olvide mi clave</a>
+                </p>*@
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Utilitarios\bin\Debug\ALICORP.Utilitarios.dll
+C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Utilitarios\bin\Debug\ALICORP.Utilitarios.pdb
+C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Utilitarios\obj\Debug\ALICORP.Utilitarios.csprojAssemblyReference.cache
+C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Utilitarios\obj\Debug\ALICORP.Utilitarios.csproj.CoreCompileInputs.cache
+C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Utilitarios\obj\Debug\ALICORP.Utilitarios.dll
+C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Utilitarios\obj\Debug\ALICORP.Utilitarios.pdb
