@@ -1168,9 +1168,11 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AreaController.cs" />
     <Compile Include="Controllers\CompromisoController.cs" />
     <Compile Include="Controllers\EstructuraController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstanciaController.cs" />
     <Compile Include="Controllers\ListaVerificacionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1271,6 +1273,10 @@
     <Content Include="Views\ListaVerificacion\Tablero.cshtml" />
     <Content Include="Views\Estructura\_Nuevo.cshtml" />
     <Content Include="Views\Estructura\_Editar.cshtml" />
+    <Content Include="Views\Area\Index.cshtml" />
+    <Content Include="Views\Area\_Nuevo.cshtml" />
+    <Content Include="Views\Area\_Editar.cshtml" />
+    <Content Include="Views\Instancia\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

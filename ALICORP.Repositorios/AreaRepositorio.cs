@@ -72,11 +72,11 @@ namespace ALICORP.Repositorios
                         {
                             entidad = new Area
                             {
-                                Id = rd.GetInt32(0),
-                                Codigo = !rd.IsDBNull(3) ? rd.GetString(3) : null,
-                                Descripcion = rd.GetString(4),
-                                ColorFondo = !rd.IsDBNull(3) ? rd.GetString(3) : null,
-                                ColorTexto = !rd.IsDBNull(4) ? rd.GetString(4) : null
+                                Id = id,
+                                Codigo = !rd.IsDBNull(0) ? rd.GetString(0) : null,
+                                Descripcion = rd.GetString(1),
+                                ColorFondo = !rd.IsDBNull(2) ? rd.GetString(2) : null,
+                                ColorTexto = !rd.IsDBNull(3) ? rd.GetString(3) : null
                             };
                         }
                         rd.Close();

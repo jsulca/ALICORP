@@ -10,10 +10,9 @@ using System.Web.Mvc;
 
 namespace ALICORP.WebApp.Controllers
 {
-    public class EstructuraController : Controller
+    public class AreaController : Controller
     {
-        private EstructuraLogica _estructuraLogica;
-        private InstanciaLogica _instanciaLogica;
+        private AreaLogica _areaLogica;
 
         #region Acciones
 
@@ -22,39 +21,24 @@ namespace ALICORP.WebApp.Controllers
             return View();
         }
 
-        public ActionResult Nuevo(int? padreId, string callBack = "SetEstructura")
+        public ActionResult Nuevo(string callBack = "SetArea")
         {
-            Estructura model = new Estructura { PadreId = padreId };
-            try
-            {
-                _instanciaLogica = new InstanciaLogica();
-                ViewBag.Instancias = _instanciaLogica.Listar() ?? new List<Instancia>();
+            ViewBag.CallBack = callBack;
 
-                ViewBag.CallBack = callBack;
-                return PartialView("_Nuevo", model);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            Area model = new Area { };
+            return PartialView("_Nuevo", model);
         }
 
         [HttpPost]
-        public ActionResult Nuevo(Estructura model)
+        public ActionResult Nuevo(Area model)
         {
             try
             {
-                _estructuraLogica = new EstructuraLogica();
-
                 Validar(model);
                 if (ModelState.IsValid)
                 {
-                    if (model.Tablero && model.PadreId.HasValue && _estructuraLogica.TieneTablero(model.PadreId.Value)) 
-                        ModelState.AddModelError("Tablero", "No puede agregar un tablero dentro de otro.");
-                }
-                if (ModelState.IsValid)
-                {
-                    _estructuraLogica.Guardar(model);
+                    _areaLogica = new AreaLogica();
+                    _areaLogica.Guardar(model);
                     return Content(model.Id.ToString());
                 }
                 else
@@ -71,20 +55,18 @@ namespace ALICORP.WebApp.Controllers
             }
         }
 
-        public ActionResult Editar(int id, string callBack = "SetEstructura")
+        public ActionResult Editar(int id, string callBack = "SetArea")
         {
             try
             {
-                _estructuraLogica = new EstructuraLogica();
-                Estructura model = _estructuraLogica.Buscar(id);
                 ViewBag.CallBack = callBack;
 
-                _instanciaLogica = new InstanciaLogica();
-                ViewBag.Instancias = _instanciaLogica.Listar() ?? new List<Instancia>();
-
+                _areaLogica = new AreaLogica();
+                Area model = _areaLogica.Buscar(id);
+                
                 return PartialView("_Editar", model);
             }
-            catch ( Exception ex)
+            catch (Exception ex)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 ViewBag.Message = ex.Message;
@@ -93,15 +75,15 @@ namespace ALICORP.WebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(Estructura model)
+        public ActionResult Editar(Area model)
         {
             try
             {
                 Validar(model);
                 if (ModelState.IsValid)
                 {
-                    _estructuraLogica = new EstructuraLogica();
-                    _estructuraLogica.Actualizar(model);
+                    _areaLogica = new AreaLogica();
+                    _areaLogica.Actualizar(model);
                     return Content(model.Id.ToString());
                 }
                 else
@@ -122,19 +104,15 @@ namespace ALICORP.WebApp.Controllers
         {
             try
             {
-                _estructuraLogica = new EstructuraLogica();
-                List<Estructura> lista = _estructuraLogica.Listar();
-
-                string rpta = JsonConvert.SerializeObject(lista.Select(x => new {
+                _areaLogica = new AreaLogica();
+                List<Area> lista = _areaLogica.Listar() ?? new List<Area>();
+                string respuesta = JsonConvert.SerializeObject(lista.Select(x => new
+                {
                     x.Id,
-                    x.PadreId,
                     x.Codigo,
-                    x.Descripcion,
-                    x.InstanciaId,
-                    x.Instancia,
-                    x.Tablero
+                    x.Descripcion
                 }));
-                return Content(rpta, "application/json");
+                return Content(respuesta, "application/json");
             }
             catch (Exception ex)
             {
@@ -148,11 +126,10 @@ namespace ALICORP.WebApp.Controllers
 
         #region Metodos y Funciones
 
-        [NonAction]
-        private void Validar(Estructura model)
+        private void Validar(Area model)
         {
             ModelState.Clear();
-            if (string.IsNullOrWhiteSpace(model.Descripcion)) ModelState.AddModelError("Descripcion", "La descripción no puede estar vacio.");
+            if (string.IsNullOrWhiteSpace(model.Descripcion)) ModelState.AddModelError("Descripcion", "Ingrese una descripción.");
         }
 
         #endregion
