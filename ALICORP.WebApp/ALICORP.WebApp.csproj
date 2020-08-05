@@ -1277,6 +1277,8 @@
     <Content Include="Views\Area\_Nuevo.cshtml" />
     <Content Include="Views\Area\_Editar.cshtml" />
     <Content Include="Views\Instancia\Index.cshtml" />
+    <Content Include="Views\Instancia\_Nuevo.cshtml" />
+    <Content Include="Views\Instancia\_Editar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

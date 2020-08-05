@@ -4,3 +4,9 @@ C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Entidades\obj\Debug\ALICO
 C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Entidades\obj\Debug\ALICORP.Entidades.dll
 C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Entidades\obj\Debug\ALICORP.Entidades.pdb
 C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Entidades\obj\Debug\ALICORP.Entidades.csprojAssemblyReference.cache
+C:\Users\HP\Desktop\ALICORP\ALICORP.Entidades\bin\Debug\ALICORP.Entidades.dll
+C:\Users\HP\Desktop\ALICORP\ALICORP.Entidades\bin\Debug\ALICORP.Entidades.pdb
+C:\Users\HP\Desktop\ALICORP\ALICORP.Entidades\obj\Debug\ALICORP.Entidades.csprojAssemblyReference.cache
+C:\Users\HP\Desktop\ALICORP\ALICORP.Entidades\obj\Debug\ALICORP.Entidades.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\ALICORP\ALICORP.Entidades\obj\Debug\ALICORP.Entidades.dll
+C:\Users\HP\Desktop\ALICORP\ALICORP.Entidades\obj\Debug\ALICORP.Entidades.pdb

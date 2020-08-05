@@ -37,10 +37,10 @@ namespace ALICORP.Repositorios
                             lista.Add(new Instancia
                             {
                                 Id = rd.GetInt32(0),
-                                Abreviatura = rd.IsDBNull(1) ? rd.GetString(1) : null,
+                                Abreviatura = !rd.IsDBNull(1) ? rd.GetString(1) : null,
                                 Descripcion = rd.GetString(2),
-                                ColorFondo = rd.IsDBNull(3) ? rd.GetString(3) : null,
-                                ColorTexto = rd.IsDBNull(4) ? rd.GetString(4) : null,
+                                ColorFondo = !rd.IsDBNull(3) ? rd.GetString(3) : null,
+                                ColorTexto = !rd.IsDBNull(4) ? rd.GetString(4) : null,
                             });
                         }
                         rd.Close();
@@ -73,10 +73,10 @@ namespace ALICORP.Repositorios
                             entidad = new Instancia
                             {
                                 Id = rd.GetInt32(0),
-                                Abreviatura = rd.IsDBNull(1) ? rd.GetString(1) : null,
+                                Abreviatura = !rd.IsDBNull(1) ? rd.GetString(1) : null,
                                 Descripcion = rd.GetString(2),
-                                ColorFondo = rd.IsDBNull(3) ? rd.GetString(3) : null,
-                                ColorTexto = rd.IsDBNull(4) ? rd.GetString(4) : null,
+                                ColorFondo = !rd.IsDBNull(3) ? rd.GetString(3) : null,
+                                ColorTexto = !rd.IsDBNull(4) ? rd.GetString(4) : null,
                             };
                         }
                         rd.Close();
@@ -112,7 +112,7 @@ namespace ALICORP.Repositorios
             }
             catch (Exception)
             {
-                throw new Exception("Ocurrió un problema al guardar una onstancia.");
+                throw new Exception("Ocurrió un problema al guardar una instancia.");
             }
         }
 
