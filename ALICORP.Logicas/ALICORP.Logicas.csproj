@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CargoLogica.cs" />
     <Compile Include="Common\BaseLogica.cs" />
     <Compile Include="AreaLogica.cs" />
+    <Compile Include="EmpleadoLogica.cs" />
     <Compile Include="InstanciaLogica.cs" />
     <Compile Include="EstructuraLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
