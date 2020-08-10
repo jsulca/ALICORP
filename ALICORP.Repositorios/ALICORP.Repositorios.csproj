@@ -45,6 +45,8 @@
     <Compile Include="Common\BaseRepositorio.cs" />
     <Compile Include="AreaRepositorio.cs" />
     <Compile Include="EmpleadoRepositorio.cs" />
+    <Compile Include="EstructuraAreaRepositorio.cs" />
+    <Compile Include="EstructuraInstanciaRepositorio.cs" />
     <Compile Include="InstanciaRepositorio.cs" />
     <Compile Include="EstructuraRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

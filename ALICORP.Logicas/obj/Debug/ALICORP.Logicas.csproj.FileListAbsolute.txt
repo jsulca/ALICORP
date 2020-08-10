@@ -11,16 +11,3 @@ C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP
 C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP.Logicas.csproj.CopyComplete
 C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP.Logicas.dll
 C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP.Logicas.pdb
-C:\Users\HP\Desktop\ALICORP\ALICORP.Logicas\bin\Debug\ALICORP.Logicas.dll
-C:\Users\HP\Desktop\ALICORP\ALICORP.Logicas\bin\Debug\ALICORP.Logicas.pdb
-C:\Users\HP\Desktop\ALICORP\ALICORP.Logicas\bin\Debug\ALICORP.Contextos.dll
-C:\Users\HP\Desktop\ALICORP\ALICORP.Logicas\bin\Debug\ALICORP.Entidades.dll
-C:\Users\HP\Desktop\ALICORP\ALICORP.Logicas\bin\Debug\ALICORP.Repositorios.dll
-C:\Users\HP\Desktop\ALICORP\ALICORP.Logicas\bin\Debug\ALICORP.Contextos.pdb
-C:\Users\HP\Desktop\ALICORP\ALICORP.Logicas\bin\Debug\ALICORP.Entidades.pdb
-C:\Users\HP\Desktop\ALICORP\ALICORP.Logicas\bin\Debug\ALICORP.Repositorios.pdb
-C:\Users\HP\Desktop\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP.Logicas.csprojAssemblyReference.cache
-C:\Users\HP\Desktop\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP.Logicas.csproj.CoreCompileInputs.cache
-C:\Users\HP\Desktop\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP.Logicas.csproj.CopyComplete
-C:\Users\HP\Desktop\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP.Logicas.dll
-C:\Users\HP\Desktop\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP.Logicas.pdb

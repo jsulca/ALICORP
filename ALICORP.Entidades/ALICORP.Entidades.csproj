@@ -45,6 +45,8 @@
     <Compile Include="Genericos\Administracion\Cargo.cs" />
     <Compile Include="Genericos\Administracion\Empleado.cs" />
     <Compile Include="Genericos\Administracion\Estructura.cs" />
+    <Compile Include="Genericos\Administracion\EstructuraArea.cs" />
+    <Compile Include="Genericos\Administracion\EstructuraInstancia.cs" />
     <Compile Include="Genericos\Administracion\Instancia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
