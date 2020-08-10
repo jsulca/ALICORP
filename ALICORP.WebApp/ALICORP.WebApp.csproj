@@ -1287,6 +1287,7 @@
     <Content Include="Views\Cargo\Index.cshtml" />
     <Content Include="Views\Cargo\_Nuevo.cshtml" />
     <Content Include="Views\Cargo\_Editar.cshtml" />
+    <Content Include="Views\Estructura\_ModelarTablero.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

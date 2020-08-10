@@ -90,6 +90,35 @@ namespace ALICORP.Logicas
             }
         }
 
+        public void Guardar(int estructuraId, List<EstructuraInstancia> instancias, List<EstructuraArea> areas)
+        {
+            EstructuraInstanciaRepositorio estructuraInstanciaRepositorio;
+            EstructuraAreaRepositorio estructuraAreaRepositorio;
+
+            using (_contexto = new ALICORPContexto(true))
+            {
+                try
+                {
+                    estructuraInstanciaRepositorio = new EstructuraInstanciaRepositorio(_contexto.Connection, _contexto.Transaction);
+                    estructuraAreaRepositorio = new EstructuraAreaRepositorio(_contexto.Connection, _contexto.Transaction);
+
+                    estructuraInstanciaRepositorio.Limpiar(estructuraId);
+                    if (instancias != null) estructuraInstanciaRepositorio.Guardar(instancias);
+
+                    estructuraAreaRepositorio.Limpiar(estructuraId);
+                    if (areas != null) estructuraAreaRepositorio.Guardar(areas);
+
+                    _contexto.Transaction.Commit();
+                    
+                }
+                catch (Exception ex)
+                {
+                    _contexto?.Transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
         public bool Actualizar(Estructura entidad)
         {
             using (_contexto = new ALICORPContexto(true))

@@ -54,7 +54,6 @@
                             <tr class="bg-info">
                                 <th class="text-center">NIVEL</th>
                                 <th class="text-center" width="20" colspan="3">ACCIONES</th>
-                                <th class="text-center">INSTANCIA</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -93,7 +92,6 @@
             <td class="table-secondary"><i class="fa fa-cubes"></i>&nbsp;ALICORP</td>
             <td class="text-center" width="20"><a class="option nuevo-item text-success" title="Agregar Item"><i class="fa fa-plus"></i></a></td>
             <td width="20"></td>
-            <td width="20"></td>
             <td></td>
         <tr>`];
             rows += index.ListarEstructura(null, estructuras);
@@ -111,8 +109,7 @@
                             <td class="${x.Tablero ? "table-success" : "table-secondary"}"><i class="fa ${x.Tablero ? "fa-table" : "fa-cubes"}"></i>&nbsp;${x.Codigo != null ? ("[" + x.Codigo + "]") : ""} ${x.Descripcion}</td>
                             <td class="text-center" width="20"><a class="option nuevo-item text-success" title="Agregar Item"><i class="fa fa-plus"></i></a></td>
                             <td class="text-center" width="20"><a class="option editar-item text-warning" title="Editar Item"><i class="fa fa-pencil-alt"></i></a></td>
-                            <td class="text-center" width="20"></td>
-                            <td></td>
+                            <td width="20">${x.Tablero ? '<a class="option modelar-tablero text-info" title="Modelar Tablero"><i class="fa fa-table"></i></a>' : ""}</td>
                         <tr>`;
                 rows += index.ListarEstructura(x.Id, estructuras);
             });
@@ -152,11 +149,19 @@
             var id = $(this).parents().eq(1).data('id');
             index.AbrirModal('/Estructura/Editar', { callBack: 'SetEquipo', id });
         });
+        $('#arbol-jerarquico').delegate('a.modelar-tablero', 'click', function () {
+            var id = $(this).parents().eq(1).data('id');
+            index.AbrirModal('/Estructura/ModelarTablero', { callBack: 'SetTablero', id });
+        });
     });
 
     var SetEquipo = function (item) {
         $('#modal-ventana').modal('hide');
         index.Listar();
+    }
+
+    var SetTablero = function (item) {
+        $('#modal-ventana').modal('hide');
     }
 
 </script>

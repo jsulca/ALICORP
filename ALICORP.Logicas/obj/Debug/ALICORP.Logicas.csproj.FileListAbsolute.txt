@@ -1,3 +1,5 @@
+C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP.Logicas.csprojAssemblyReference.cache
+C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP.Logicas.csproj.CoreCompileInputs.cache
 C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\bin\Debug\ALICORP.Logicas.dll
 C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\bin\Debug\ALICORP.Logicas.pdb
 C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\bin\Debug\ALICORP.Contextos.dll
@@ -6,8 +8,6 @@ C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\bin\Debug\ALICORP
 C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\bin\Debug\ALICORP.Contextos.pdb
 C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\bin\Debug\ALICORP.Entidades.pdb
 C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\bin\Debug\ALICORP.Repositorios.pdb
-C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP.Logicas.csprojAssemblyReference.cache
-C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP.Logicas.csproj.CoreCompileInputs.cache
 C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP.Logicas.csproj.CopyComplete
 C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP.Logicas.dll
 C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Logicas\obj\Debug\ALICORP.Logicas.pdb

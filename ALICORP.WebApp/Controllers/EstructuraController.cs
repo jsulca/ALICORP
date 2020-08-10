@@ -14,6 +14,9 @@ namespace ALICORP.WebApp.Controllers
     {
         private EstructuraLogica _estructuraLogica;
         private InstanciaLogica _instanciaLogica;
+        private AreaLogica _areaLogica;
+        private EstructuraAreaLogica _estructuraAreaLogica;
+        private EstructuraInstanciaLogica _estructuraInstanciaLogica;
 
         #region Acciones
 
@@ -25,11 +28,9 @@ namespace ALICORP.WebApp.Controllers
         public ActionResult Nuevo(int? padreId, string callBack = "SetEstructura")
         {
             Estructura model = new Estructura { PadreId = padreId };
+
             try
             {
-                _instanciaLogica = new InstanciaLogica();
-                ViewBag.Instancias = _instanciaLogica.Listar() ?? new List<Instancia>();
-
                 ViewBag.CallBack = callBack;
                 return PartialView("_Nuevo", model);
             }
@@ -49,7 +50,7 @@ namespace ALICORP.WebApp.Controllers
                 Validar(model);
                 if (ModelState.IsValid)
                 {
-                    if (model.Tablero && model.PadreId.HasValue && _estructuraLogica.TieneTablero(model.PadreId.Value)) 
+                    if (model.Tablero && model.PadreId.HasValue && _estructuraLogica.TieneTablero(model.PadreId.Value))
                         ModelState.AddModelError("Tablero", "No puede agregar un tablero dentro de otro.");
                 }
                 if (ModelState.IsValid)
@@ -79,12 +80,9 @@ namespace ALICORP.WebApp.Controllers
                 Estructura model = _estructuraLogica.Buscar(id);
                 ViewBag.CallBack = callBack;
 
-                _instanciaLogica = new InstanciaLogica();
-                ViewBag.Instancias = _instanciaLogica.Listar() ?? new List<Instancia>();
-
                 return PartialView("_Editar", model);
             }
-            catch ( Exception ex)
+            catch (Exception ex)
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 ViewBag.Message = ex.Message;
@@ -118,6 +116,65 @@ namespace ALICORP.WebApp.Controllers
             }
         }
 
+        public ActionResult ModelarTablero(int id, string callBack = "SetModelarTablero")
+        {
+            try
+            {
+                _estructuraAreaLogica = new EstructuraAreaLogica();
+                _estructuraInstanciaLogica = new EstructuraInstanciaLogica();
+
+                Estructura model = new Estructura { Id = id };
+                model.Areas = _estructuraAreaLogica.Listar(id) ?? new List<EstructuraArea>();
+                model.Instancias = _estructuraInstanciaLogica.Listar(id) ?? new List<EstructuraInstancia>();
+
+                _instanciaLogica = new InstanciaLogica();
+                ViewBag.Instancias = _instanciaLogica.Listar() ?? new List<Instancia>();
+
+                _areaLogica = new AreaLogica();
+                ViewBag.Areas = _areaLogica.Listar() ?? new List<Area>();
+
+                ViewBag.CallBack = callBack;
+
+                return PartialView("_ModelarTablero", model);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                ViewBag.Message = ex.Message;
+                return PartialView("_Error");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ModelarTablero(Estructura model)
+        {
+            try
+            {
+                Validar(model.Instancias, model.Areas);
+                if (ModelState.IsValid)
+                {
+                    if (model.Areas != null) model.Areas.ForEach(x => x.EstructuraId = model.Id);
+                    if (model.Instancias != null) model.Instancias.ForEach(x => x.EstructuraId = model.Id);
+
+                    _estructuraLogica = new EstructuraLogica();
+                    _estructuraLogica.Guardar(model.Id, model.Instancias, model.Areas);
+
+                    return Content("Se guardaron los cambios.");
+                }
+                else
+                {
+                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return PartialView("_Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                ViewBag.Message = ex.Message;
+                return PartialView("_Error");
+            }
+        }
+
         public ActionResult Listar()
         {
             try
@@ -125,13 +182,12 @@ namespace ALICORP.WebApp.Controllers
                 _estructuraLogica = new EstructuraLogica();
                 List<Estructura> lista = _estructuraLogica.Listar();
 
-                string rpta = JsonConvert.SerializeObject(lista.Select(x => new {
+                string rpta = JsonConvert.SerializeObject(lista.Select(x => new
+                {
                     x.Id,
                     x.PadreId,
                     x.Codigo,
                     x.Descripcion,
-                    x.InstanciaId,
-                    x.Instancia,
                     x.Tablero
                 }));
                 return Content(rpta, "application/json");
@@ -153,6 +209,19 @@ namespace ALICORP.WebApp.Controllers
         {
             ModelState.Clear();
             if (string.IsNullOrWhiteSpace(model.Descripcion)) ModelState.AddModelError("Descripcion", "La descripción no puede estar vacio.");
+        }
+
+        [NonAction]
+        private void Validar(List<EstructuraInstancia> instancias, List<EstructuraArea> areas)
+        {
+            ModelState.Clear();
+            if (instancias != null)
+                for (int i = 0; i < instancias.Count; i++)
+                    if (instancias[i].InstanciaId <= 0) ModelState.AddModelError("Instancia_" + i, string.Format("La instancia {0} no tiene un identificador.", i + 1));
+
+            if (areas != null)
+                for (int i = 0; i < areas.Count; i++)
+                    if (areas[i].AreaId <= 0) ModelState.AddModelError("Area_" + i, string.Format("El área {0} no tiene un identificador.", i + 1));
         }
 
         #endregion

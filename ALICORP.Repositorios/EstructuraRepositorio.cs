@@ -38,11 +38,9 @@ namespace ALICORP.Repositorios
                             {
                                 Id = rd.GetInt32(0),
                                 PadreId = !rd.IsDBNull(1) ? rd.GetInt32(1) : (int?)null,
-                                InstanciaId = !rd.IsDBNull(2) ? rd.GetInt32(2) : (int?)null,
-                                Codigo = !rd.IsDBNull(3) ? rd.GetString(3) : null,
-                                Descripcion = rd.GetString(4),
-                                Tablero = rd.GetBoolean(5),
-                                Instancia = rd.IsDBNull(2) ? null : new Instancia { Descripcion = rd.GetString(6) }
+                                Codigo = !rd.IsDBNull(2) ? rd.GetString(2) : null,
+                                Descripcion = rd.GetString(3),
+                                Tablero = rd.GetBoolean(4)
                             });
                         }
                         rd.Close();
@@ -76,10 +74,9 @@ namespace ALICORP.Repositorios
                             {
                                 Id = rd.GetInt32(0),
                                 PadreId = !rd.IsDBNull(1) ? rd.GetInt32(1) : (int?)null,
-                                InstanciaId = !rd.IsDBNull(2) ? rd.GetInt32(2) : (int?)null,
-                                Codigo = !rd.IsDBNull(3) ? rd.GetString(3) : null,
-                                Descripcion = rd.GetString(4),
-                                Tablero = rd.GetBoolean(5)
+                                Codigo = !rd.IsDBNull(2) ? rd.GetString(2) : null,
+                                Descripcion = rd.GetString(3),
+                                Tablero = rd.GetBoolean(4)
                             };
                         }
                         rd.Close();
@@ -104,7 +101,6 @@ namespace ALICORP.Repositorios
                     cmd.CommandText = "usp_Estructura_Guardar";
 
                     cmd.Parameters.AddWithValue("@padreid", entidad.PadreId ?? Convert.DBNull);
-                    cmd.Parameters.AddWithValue("@instanciaid", entidad.InstanciaId ?? Convert.DBNull);
                     cmd.Parameters.AddWithValue("@codigo", entidad.Codigo ?? Convert.DBNull);
                     cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion);
                     cmd.Parameters.AddWithValue("@tablero", entidad.Tablero);
@@ -131,7 +127,6 @@ namespace ALICORP.Repositorios
                     cmd.CommandText = "usp_Estructura_Actualizar";
 
                     cmd.Parameters.AddWithValue("@id", entidad.Id);
-                    cmd.Parameters.AddWithValue("@instanciaid", entidad.InstanciaId ?? Convert.DBNull);
                     cmd.Parameters.AddWithValue("@codigo", entidad.Codigo ?? Convert.DBNull);
                     cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion);
 
