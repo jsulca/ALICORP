@@ -29,19 +29,19 @@
             <div class="form-row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="ApellidoPaterno">Apellido Paterno: </label>
+                        <label for="ApellidoPaterno">Apellido Paterno: <span class="text-danger">(*)</span></label>
                         @Html.TextBoxFor(m => m.ApellidoPaterno, new { @class = "form-control form-control-sm" })
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="ApellidoMaterno">Apellido Materno: </label>
+                        <label for="ApellidoMaterno">Apellido Materno: <span class="text-danger">(*)</span></label>
                         @Html.TextBoxFor(m => m.ApellidoMaterno, new { @class = "form-control form-control-sm" })
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="Nombre">Nombres: </label>
+                        <label for="Nombre">Nombres: <span class="text-danger">(*)</span></label>
                         @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-sm" })
                     </div>
                 </div>
@@ -49,7 +49,7 @@
             <div class="form-row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="NroDocumento">Nro. Documento: </label>
+                        <label for="NroDocumento">Nro. Documento: <span class="text-danger">(*)</span></label>
                         @Html.TextBoxFor(m => m.NroDocumento, new { @class = "form-control form-control-sm" })
                     </div>
                 </div>

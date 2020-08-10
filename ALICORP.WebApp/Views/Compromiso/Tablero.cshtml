@@ -19,13 +19,17 @@
     <div class="col-md">
         <div class="row">
             <div class="col-md-12 col-sm-6">
-
                 <div class="card card-default">
                     <div class="card-header text-dark drop-nuevo">
                         <h3 class="card-title">NUEVO</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="card-body list-compromisos">
-                        <div class="compromiso bg-light" data-codigo="C-00001">
+                    <div class="card-body p-1 list-compromisos">
+                        <div class="compromiso" data-codigo="C-00001">
                             @*<p class="text-center mb-0 font-weight-bold">C-00001</p>*@
                             <p class="mb-0">Breve descripción</p>
                         </div>
@@ -53,6 +57,81 @@
                 <div class="card card-default">
                     <div class="card-header bg-pink">
                         <h3 class="card-title text-white">PENDIENTES</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-1 list-compromisos">
+                        <div class="compromiso" data-codigo="C-00001">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00001</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso" data-codigo="C-00002">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00002</p>*@
+                            <p class="mb-0"><i class="far fa-circle text-danger"></i>&nbsp;Breve descripción</p>
+                        </div>
+                        <div class="compromiso" data-codigo="C-00003">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00003</p>*@
+                            <p class="mb-0"><i class="far fa-circle text-info"></i>&nbsp;Breve descripción</p>
+                        </div>
+                        <div class="compromiso" data-codigo="C-00004">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00004</p>*@
+                            <p class="mb-0"><i class="far fa-circle text-warning"></i>&nbsp;Breve descripción</p>
+                        </div>
+                        <div class="compromiso" data-codigo="C-00005">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00005</p>*@
+                            <p class="mb-0"><i class="far fa-circle text-primary"></i>&nbsp;Breve descripción</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-6">
+                <div class="card card-default">
+                    <div class="card-header bg-warning">
+                        <h3 class="card-title text-dark">POR VERIFICAR</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body list-compromisos">
+                        <div class="compromiso bg-light" data-codigo="C-00001">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00001</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-danger" data-codigo="C-00002">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00002</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-info" data-codigo="C-00003">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00003</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-warning" data-codigo="C-00004">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00004</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                        <div class="compromiso bg-primary" data-codigo="C-00005">
+                            @*<p class="text-center mb-0 font-weight-bold">C-00005</p>*@
+                            <p class="mb-0">Breve descripción</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-6">
+                <div class="card card-default">
+                    <div class="card-header bg-danger">
+                        <h3 class="card-title text-white">FUERA DE FECHA</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="card-body list-compromisos">
                         <div class="compromiso bg-light" data-codigo="C-00001">
@@ -87,64 +166,6 @@
     </div>
     <div class="col-sm">
         <div class="row">
-            <div class="col-md-12 col-sm-6">
-                <div class="card card-default">
-                    <div class="card-header bg-warning">
-                        <h3 class="card-title text-dark">POR VERIFICAR</h3>
-                    </div>
-                    <div class="card-body list-compromisos">
-                        <div class="compromiso bg-light" data-codigo="C-00001">
-                            @*<p class="text-center mb-0 font-weight-bold">C-00001</p>*@
-                            <p class="mb-0">Breve descripción</p>
-                        </div>
-                        <div class="compromiso bg-danger" data-codigo="C-00002">
-                            @*<p class="text-center mb-0 font-weight-bold">C-00002</p>*@
-                            <p class="mb-0">Breve descripción</p>
-                        </div>
-                        <div class="compromiso bg-info" data-codigo="C-00003">
-                            @*<p class="text-center mb-0 font-weight-bold">C-00003</p>*@
-                            <p class="mb-0">Breve descripción</p>
-                        </div>
-                        <div class="compromiso bg-warning" data-codigo="C-00004">
-                            @*<p class="text-center mb-0 font-weight-bold">C-00004</p>*@
-                            <p class="mb-0">Breve descripción</p>
-                        </div>
-                        <div class="compromiso bg-primary" data-codigo="C-00005">
-                            @*<p class="text-center mb-0 font-weight-bold">C-00005</p>*@
-                            <p class="mb-0">Breve descripción</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-sm-6">
-                <div class="card card-default">
-                    <div class="card-header bg-danger">
-                        <h3 class="card-title text-white">FUERA DE FECHA</h3>
-                    </div>
-                    <div class="card-body list-compromisos">
-                        <div class="compromiso bg-light" data-codigo="C-00001">
-                            @*<p class="text-center mb-0 font-weight-bold">C-00001</p>*@
-                            <p class="mb-0">Breve descripción</p>
-                        </div>
-                        <div class="compromiso bg-danger" data-codigo="C-00002">
-                            @*<p class="text-center mb-0 font-weight-bold">C-00002</p>*@
-                            <p class="mb-0">Breve descripción</p>
-                        </div>
-                        <div class="compromiso bg-info" data-codigo="C-00003">
-                            @*<p class="text-center mb-0 font-weight-bold">C-00003</p>*@
-                            <p class="mb-0">Breve descripción</p>
-                        </div>
-                        <div class="compromiso bg-warning" data-codigo="C-00004">
-                            @*<p class="text-center mb-0 font-weight-bold">C-00004</p>*@
-                            <p class="mb-0">Breve descripción</p>
-                        </div>
-                        <div class="compromiso bg-primary" data-codigo="C-00005">
-                            @*<p class="text-center mb-0 font-weight-bold">C-00005</p>*@
-                            <p class="mb-0">Breve descripción</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

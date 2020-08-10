@@ -41,15 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorRepositorio.cs" />
-    <Compile Include="CargoRepositorio.cs" />
+    <Compile Include="Administracion\ColorRepositorio.cs" />
+    <Compile Include="Administracion\CargoRepositorio.cs" />
     <Compile Include="Common\BaseRepositorio.cs" />
-    <Compile Include="AreaRepositorio.cs" />
-    <Compile Include="EmpleadoRepositorio.cs" />
-    <Compile Include="EstructuraAreaRepositorio.cs" />
-    <Compile Include="EstructuraInstanciaRepositorio.cs" />
-    <Compile Include="InstanciaRepositorio.cs" />
-    <Compile Include="EstructuraRepositorio.cs" />
+    <Compile Include="Administracion\AreaRepositorio.cs" />
+    <Compile Include="Administracion\EmpleadoRepositorio.cs" />
+    <Compile Include="Administracion\EstructuraAreaRepositorio.cs" />
+    <Compile Include="Administracion\EstructuraInstanciaRepositorio.cs" />
+    <Compile Include="Administracion\InstanciaRepositorio.cs" />
+    <Compile Include="Administracion\EstructuraRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +57,9 @@
       <Project>{db6f339d-3874-4c2b-b2d3-10fdaf4a6d24}</Project>
       <Name>ALICORP.Entidades</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ListaVerificacion\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

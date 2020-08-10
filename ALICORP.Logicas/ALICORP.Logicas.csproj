@@ -41,18 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorLogica.cs" />
-    <Compile Include="CargoLogica.cs" />
+    <Compile Include="Administracion\ColorLogica.cs" />
+    <Compile Include="Administracion\CargoLogica.cs" />
     <Compile Include="Common\BaseLogica.cs" />
-    <Compile Include="AreaLogica.cs" />
-    <Compile Include="EmpleadoLogica.cs" />
-    <Compile Include="EstructuraInstanciaLogica.cs" />
-    <Compile Include="EstructuraAreaLogica.cs" />
-    <Compile Include="InstanciaLogica.cs" />
-    <Compile Include="EstructuraLogica.cs" />
+    <Compile Include="Administracion\AreaLogica.cs" />
+    <Compile Include="Administracion\EmpleadoLogica.cs" />
+    <Compile Include="Administracion\EstructuraInstanciaLogica.cs" />
+    <Compile Include="Administracion\EstructuraAreaLogica.cs" />
+    <Compile Include="Administracion\InstanciaLogica.cs" />
+    <Compile Include="Administracion\EstructuraLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ListaVerificacion\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ALICORP.Contextos\ALICORP.Contextos.csproj">
       <Project>{1eff7180-8d16-4acf-96e4-946fccb51052}</Project>
