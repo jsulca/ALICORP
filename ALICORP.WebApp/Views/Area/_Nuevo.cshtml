@@ -1,4 +1,7 @@
 ﻿@model Area
+@{ 
+    List<Color> colores = ViewBag.Colores;
+}
 <div class="modal-dialog animated bounceInDown">
     <div class="modal-content">
         <div class="modal-header">
@@ -9,10 +12,22 @@
         </div>
         <div class="modal-body">
             <div class="form-row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="Codigo">Código: </label>
                         @Html.TextBoxFor(m => m.Codigo, new { @class = "form-control form-control-sm text-uppercase" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="ColorFondoId">Color Fondo: <span class="text-danger">(*)</span></label>
+                        @Html.DropDownListFor(m => m.ColorFondoId, new SelectList(colores, "Id", "Descripcion"), new { @class = "form-control form-control-sm" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="ColorTextoId">Color Texto: <span class="text-danger">(*)</span></label>
+                        @Html.DropDownListFor(m => m.ColorTextoId, new SelectList(colores, "Id", "Descripcion"), new { @class = "form-control form-control-sm" })
                     </div>
                 </div>
             </div>
@@ -37,6 +52,8 @@
     var nuevo = {
         ObtenerModelo: function () {
             var model = {
+                'colorFondoId': $('#ColorFondoId').val(),
+                'colorTextoId': $('#ColorTextoId').val(),
                 'codigo': $('#Codigo').val(),
                 'descripcion': $('#Descripcion').val(),
             };

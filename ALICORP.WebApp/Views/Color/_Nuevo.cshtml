@@ -1,42 +1,38 @@
-﻿@model Instancia
-@{
-    List<Color> colores = ViewBag.Colores;
-}
+﻿@model Color
 <div class="modal-dialog animated bounceInDown">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title">Editar Instancia</h5>
+            <h5 class="modal-title">Nuevo Color</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-            @Html.HiddenFor(m => m.Id)
-            <div class="form-row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="Codigo">Código: </label>
-                        @Html.TextBoxFor(m => m.Abreviatura, new { @class = "form-control form-control-sm text-uppercase" })
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="ColorFondoId">Color Fondo: <span class="text-danger">(*)</span></label>
-                        @Html.DropDownListFor(m => m.ColorFondoId, new SelectList(colores, "Id", "Descripcion"), new { @class = "form-control form-control-sm" })
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="ColorTextoId">Color Texto: <span class="text-danger">(*)</span></label>
-                        @Html.DropDownListFor(m => m.ColorTextoId, new SelectList(colores, "Id", "Descripcion"), new { @class = "form-control form-control-sm" })
-                    </div>
-                </div>
-            </div>
             <div class="form-row">
                 <div class="col-12">
                     <div class="form-group">
                         <label for="Descripcion">Descripción: <span class="text-danger">(*)</span></label>
                         @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control form-control-sm" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Descripcion">RGBA: </label>
+                        @Html.TextBoxFor(m => m.Rgba, new { @class = "form-control form-control-sm" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Descripcion">HEX: </label>
+                        @Html.TextBoxFor(m => m.Hex, new { @class = "form-control form-control-sm" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Descripcion">Clase: </label>
+                        @Html.TextBoxFor(m => m.Clase, new { @class = "form-control form-control-sm" })
                     </div>
                 </div>
             </div>
@@ -48,15 +44,15 @@
         </div>
     </div>
 </div>
+
 <script>
     var nuevo = {
         ObtenerModelo: function () {
             var model = {
-                'id': $('#Id').val(),
-                'abreviatura': $('#Abreviatura').val(),
                 'descripcion': $('#Descripcion').val(),
-                'colorFondoId': $('#ColorFondoId').val(),
-                'colorTextoId': $('#ColorTextoId').val()
+                'rgba': $('#Rgba').val(),
+                'hex': $('#Hex').val(),
+                'clase': $('#Clase').val(),
             };
             return model;
         }
@@ -66,7 +62,7 @@
             var model = nuevo.ObtenerModelo();
             $.ajax({
                 type: "POST",
-                url: "/Instancia/Editar",
+                url: "/Color/Nuevo",
                 data: model,
                 beforeSend: function () {
                     $("#msgEditar").hide();

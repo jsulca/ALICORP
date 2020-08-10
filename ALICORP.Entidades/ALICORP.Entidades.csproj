@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Genericos\Administracion\Area.cs" />
     <Compile Include="Genericos\Administracion\Cargo.cs" />
+    <Compile Include="Genericos\Administracion\Color.cs" />
     <Compile Include="Genericos\Administracion\Empleado.cs" />
     <Compile Include="Genericos\Administracion\Estructura.cs" />
     <Compile Include="Genericos\Administracion\EstructuraArea.cs" />

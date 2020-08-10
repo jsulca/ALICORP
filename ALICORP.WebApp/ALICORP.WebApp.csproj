@@ -1170,6 +1170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AreaController.cs" />
     <Compile Include="Controllers\CargoController.cs" />
+    <Compile Include="Controllers\ColorController.cs" />
     <Compile Include="Controllers\CompromisoController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\EstructuraController.cs" />
@@ -1288,6 +1289,9 @@
     <Content Include="Views\Cargo\_Nuevo.cshtml" />
     <Content Include="Views\Cargo\_Editar.cshtml" />
     <Content Include="Views\Estructura\_ModelarTablero.cshtml" />
+    <Content Include="Views\Color\_Editar.cshtml" />
+    <Content Include="Views\Color\_Nuevo.cshtml" />
+    <Content Include="Views\Color\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

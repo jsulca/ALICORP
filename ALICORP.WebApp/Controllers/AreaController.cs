@@ -13,6 +13,7 @@ namespace ALICORP.WebApp.Controllers
     public class AreaController : Controller
     {
         private AreaLogica _areaLogica;
+        private ColorLogica _colorLogica;
 
         #region Acciones
 
@@ -23,10 +24,22 @@ namespace ALICORP.WebApp.Controllers
 
         public ActionResult Nuevo(string callBack = "SetArea")
         {
-            ViewBag.CallBack = callBack;
+            try
+            {
+                _colorLogica = new ColorLogica();
+                ViewBag.Colores = _colorLogica.Listar() ?? new List<Color>();
 
-            Area model = new Area { };
-            return PartialView("_Nuevo", model);
+                ViewBag.CallBack = callBack;
+
+                Area model = new Area { };
+                return PartialView("_Nuevo", model);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                ViewBag.Message = ex.Message;
+                return PartialView("_Error");
+            }
         }
 
         [HttpPost]
@@ -59,11 +72,14 @@ namespace ALICORP.WebApp.Controllers
         {
             try
             {
+                _colorLogica = new ColorLogica();
+                ViewBag.Colores = _colorLogica.Listar() ?? new List<Color>();
+
                 ViewBag.CallBack = callBack;
 
                 _areaLogica = new AreaLogica();
                 Area model = _areaLogica.Buscar(id);
-                
+
                 return PartialView("_Editar", model);
             }
             catch (Exception ex)
@@ -129,6 +145,8 @@ namespace ALICORP.WebApp.Controllers
         private void Validar(Area model)
         {
             ModelState.Clear();
+            if (model.ColorFondoId <= 0) ModelState.AddModelError("ColorFondoId", "Seleccione un color de fondo.");
+            if (model.ColorTextoId <= 0) ModelState.AddModelError("ColorTextoId", "Seleccione un color de texto.");
             if (string.IsNullOrWhiteSpace(model.Descripcion)) ModelState.AddModelError("Descripcion", "Ingrese una descripción.");
         }
 

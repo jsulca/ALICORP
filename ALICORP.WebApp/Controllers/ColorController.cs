@@ -10,9 +10,8 @@ using System.Web.Mvc;
 
 namespace ALICORP.WebApp.Controllers
 {
-    public class InstanciaController : Controller
+    public class ColorController : Controller
     {
-        private InstanciaLogica _instanciaLogica;
         private ColorLogica _colorLogica;
 
         #region Acciones
@@ -22,36 +21,24 @@ namespace ALICORP.WebApp.Controllers
             return View();
         }
 
-        public ActionResult Nuevo(string callBack = "SetInstancia")
+        public ActionResult Nuevo(string callBack = "SetColor")
         {
-            try
-            {
-                _colorLogica = new ColorLogica();
-                ViewBag.Colores = _colorLogica.Listar() ?? new List<Color>();
+            ViewBag.CallBack = callBack;
 
-                ViewBag.CallBack = callBack;
-
-                Instancia model = new Instancia { };
-                return PartialView("_Nuevo", model);
-            }
-            catch (Exception ex)
-            {
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                ViewBag.Message = ex.Message;
-                return PartialView("_Error");
-            }
+            Color model = new Color { };
+            return PartialView("_Nuevo", model);
         }
 
         [HttpPost]
-        public ActionResult Nuevo(Instancia model)
+        public ActionResult Nuevo(Color model)
         {
             try
             {
                 Validar(model);
                 if (ModelState.IsValid)
                 {
-                    _instanciaLogica = new InstanciaLogica();
-                    _instanciaLogica.Guardar(model);
+                    _colorLogica = new ColorLogica();
+                    _colorLogica.Guardar(model);
                     return Content(model.Id.ToString());
                 }
                 else
@@ -68,17 +55,14 @@ namespace ALICORP.WebApp.Controllers
             }
         }
 
-        public ActionResult Editar(int id, string callBack = "SetInstancia")
+        public ActionResult Editar(int id, string callBack = "SetColor")
         {
             try
             {
-                _colorLogica = new ColorLogica();
-                ViewBag.Colores = _colorLogica.Listar() ?? new List<Color>();
-
                 ViewBag.CallBack = callBack;
 
-                _instanciaLogica = new InstanciaLogica();
-                Instancia model = _instanciaLogica.Buscar(id);
+                _colorLogica = new ColorLogica();
+                Color model = _colorLogica.Buscar(id);
 
                 return PartialView("_Editar", model);
             }
@@ -91,15 +75,15 @@ namespace ALICORP.WebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(Instancia model)
+        public ActionResult Editar(Color model)
         {
             try
             {
                 Validar(model);
                 if (ModelState.IsValid)
                 {
-                    _instanciaLogica = new InstanciaLogica();
-                    _instanciaLogica.Actualizar(model);
+                    _colorLogica = new ColorLogica();
+                    _colorLogica.Actualizar(model);
                     return Content(model.Id.ToString());
                 }
                 else
@@ -120,13 +104,15 @@ namespace ALICORP.WebApp.Controllers
         {
             try
             {
-                _instanciaLogica = new InstanciaLogica();
-                List<Instancia> lista = _instanciaLogica.Listar() ?? new List<Instancia>();
+                _colorLogica = new ColorLogica();
+                List<Color> lista = _colorLogica.Listar() ?? new List<Color>();
                 string respuesta = JsonConvert.SerializeObject(lista.Select(x => new
                 {
                     x.Id,
-                    x.Abreviatura,
-                    x.Descripcion
+                    x.Descripcion,
+                    x.Hex,
+                    x.Rgba,
+                    x.Clase
                 }));
                 return Content(respuesta, "application/json");
             }
@@ -142,14 +128,11 @@ namespace ALICORP.WebApp.Controllers
 
         #region Metodos y Funciones
 
-        private void Validar(Instancia model)
+        private void Validar(Color model)
         {
             ModelState.Clear();
-            if (model.ColorFondoId <= 0) ModelState.AddModelError("ColorFondoId", "Seleccione un color de fondo.");
-            if (model.ColorTextoId <= 0) ModelState.AddModelError("ColorTextoId", "Seleccione un color de texto.");
-            if (string.IsNullOrWhiteSpace(model.Descripcion)) ModelState.AddModelError("Descripcion", "Ingrese una descripcion");
+            if (string.IsNullOrWhiteSpace(model.Descripcion)) ModelState.AddModelError("Descripcion", "Ingrese una descripción.");
         }
-
         #endregion
     }
 }

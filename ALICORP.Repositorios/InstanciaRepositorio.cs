@@ -39,8 +39,8 @@ namespace ALICORP.Repositorios
                                 Id = rd.GetInt32(0),
                                 Abreviatura = !rd.IsDBNull(1) ? rd.GetString(1) : null,
                                 Descripcion = rd.GetString(2),
-                                ColorFondo = !rd.IsDBNull(3) ? rd.GetString(3) : null,
-                                ColorTexto = !rd.IsDBNull(4) ? rd.GetString(4) : null,
+                                ColorFondoId = rd.GetInt32(3),
+                                ColorTextoId = rd.GetInt32(4)
                             });
                         }
                         rd.Close();
@@ -75,8 +75,8 @@ namespace ALICORP.Repositorios
                                 Id = rd.GetInt32(0),
                                 Abreviatura = !rd.IsDBNull(1) ? rd.GetString(1) : null,
                                 Descripcion = rd.GetString(2),
-                                ColorFondo = !rd.IsDBNull(3) ? rd.GetString(3) : null,
-                                ColorTexto = !rd.IsDBNull(4) ? rd.GetString(4) : null,
+                                ColorFondoId = rd.GetInt32(3),
+                                ColorTextoId = rd.GetInt32(4)
                             };
                         }
                         rd.Close();
@@ -102,8 +102,8 @@ namespace ALICORP.Repositorios
 
                     cmd.Parameters.AddWithValue("@abreviatura", entidad.Abreviatura ?? Convert.DBNull);
                     cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion);
-                    cmd.Parameters.AddWithValue("@colorfondo", entidad.ColorFondo ?? Convert.DBNull);
-                    cmd.Parameters.AddWithValue("@colortexto", entidad.ColorTexto ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@colorfondoid", entidad.ColorFondoId);
+                    cmd.Parameters.AddWithValue("@colortextoid", entidad.ColorTextoId);
 
                     entidad.Id = int.Parse(cmd.ExecuteScalar().ToString());
                     respuesta = entidad.Id > 0;
@@ -129,8 +129,8 @@ namespace ALICORP.Repositorios
                     cmd.Parameters.AddWithValue("@id", entidad.Id);
                     cmd.Parameters.AddWithValue("@abreviatura", entidad.Abreviatura ?? Convert.DBNull);
                     cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion);
-                    cmd.Parameters.AddWithValue("@colorfondo", entidad.ColorFondo ?? Convert.DBNull);
-                    cmd.Parameters.AddWithValue("@colortexto", entidad.ColorTexto ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@colorfondoid", entidad.ColorFondoId);
+                    cmd.Parameters.AddWithValue("@colortextoid", entidad.ColorTextoId);
 
                     respuesta = cmd.ExecuteNonQuery() > 0;
                 }

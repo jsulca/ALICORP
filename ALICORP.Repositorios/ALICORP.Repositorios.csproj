@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorRepositorio.cs" />
     <Compile Include="CargoRepositorio.cs" />
     <Compile Include="Common\BaseRepositorio.cs" />
     <Compile Include="AreaRepositorio.cs" />

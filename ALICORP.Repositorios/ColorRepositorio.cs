@@ -10,37 +10,37 @@ using System.Threading.Tasks;
 
 namespace ALICORP.Repositorios
 {
-    public class AreaRepositorio : BaseRepositorio
+    public class ColorRepositorio : BaseRepositorio
     {
         #region Constructores
 
-        public AreaRepositorio(SqlConnection connection) : base(connection) { }
+        public ColorRepositorio(SqlConnection connection) : base(connection) { }
 
-        public AreaRepositorio(SqlConnection connection, SqlTransaction transaction) : base(connection, transaction) { }
+        public ColorRepositorio(SqlConnection connection, SqlTransaction transaction) : base(connection, transaction) { }
 
         #endregion
 
-        public List<Area> Listar()
+        public List<Color> Listar()
         {
-            List<Area> lista = new List<Area>();
+            List<Color> lista = new List<Color>();
             try
             {
                 using (var cmd = CreateCommand())
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "usp_Area_Listar";
+                    cmd.CommandText = "usp_Color_Listar";
 
                     using (var rd = cmd.ExecuteReader())
                     {
                         while (rd.Read())
                         {
-                            lista.Add(new Area
+                            lista.Add(new Color
                             {
                                 Id = rd.GetInt32(0),
-                                Codigo = !rd.IsDBNull(1) ? rd.GetString(1) : null,
-                                Descripcion = rd.GetString(2),
-                                ColorFondoId = rd.GetInt32(3),
-                                ColorTextoId = rd.GetInt32(4)
+                                Descripcion = rd.GetString(1),
+                                Rgba = !rd.IsDBNull(2) ? rd.GetString(2) : null,
+                                Hex = !rd.IsDBNull(3) ? rd.GetString(3) : null,
+                                Clase = !rd.IsDBNull(4) ? rd.GetString(4) : null,
                             });
                         }
                         rd.Close();
@@ -50,19 +50,19 @@ namespace ALICORP.Repositorios
             }
             catch (Exception)
             {
-                throw new Exception("Ocurrió un problema al listar las áreas.");
+                throw new Exception("Ocurrió un problema al listar los colores.");
             }
         }
 
-        public Area Buscar(int id)
+        public Color Buscar(int id)
         {
-            Area entidad = null;
+            Color entidad = null;
             try
             {
                 using (var cmd = CreateCommand())
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "usp_Area_Buscar";
+                    cmd.CommandText = "usp_Color_Buscar";
 
                     cmd.Parameters.AddWithValue("@id", id);
 
@@ -70,14 +70,14 @@ namespace ALICORP.Repositorios
                     {
                         while (rd.Read())
                         {
-                            entidad = new Area
+                            entidad = new Color
                             {
                                 Id = id,
-                                Codigo = !rd.IsDBNull(0) ? rd.GetString(0) : null,
-                                Descripcion = rd.GetString(1),
-                                ColorFondoId = rd.GetInt32(2),
-                                ColorTextoId = rd.GetInt32(3)
-                        };
+                                Descripcion = rd.GetString(0),
+                                Rgba = !rd.IsDBNull(1) ? rd.GetString(1) : null,
+                                Hex = !rd.IsDBNull(2) ? rd.GetString(2) : null,
+                                Clase = !rd.IsDBNull(3) ? rd.GetString(3) : null,
+                            };
                         }
                         rd.Close();
                     }
@@ -86,11 +86,11 @@ namespace ALICORP.Repositorios
             }
             catch (Exception)
             {
-                throw new Exception("Ocurrió un problema al buscar una área.");
+                throw new Exception("Ocurrió un problema al buscar un color.");
             }
         }
 
-        public bool Guardar(Area entidad)
+        public bool Guardar(Color entidad)
         {
             bool respuesta = false;
             try
@@ -98,12 +98,12 @@ namespace ALICORP.Repositorios
                 using (var cmd = CreateCommand())
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "usp_Area_Guardar";
+                    cmd.CommandText = "usp_Color_Guardar";
 
-                    cmd.Parameters.AddWithValue("@codigo", entidad.Codigo ?? Convert.DBNull);
                     cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion);
-                    cmd.Parameters.AddWithValue("@colorfondoid", entidad.ColorFondoId);
-                    cmd.Parameters.AddWithValue("@colortextoid", entidad.ColorTextoId);
+                    cmd.Parameters.AddWithValue("@rgba", entidad.Rgba ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@hex", entidad.Hex ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@clase", entidad.Clase ?? Convert.DBNull);
 
                     entidad.Id = int.Parse(cmd.ExecuteScalar().ToString());
                     respuesta = entidad.Id > 0;
@@ -112,11 +112,11 @@ namespace ALICORP.Repositorios
             }
             catch (Exception)
             {
-                throw new Exception("Ocurrió un problema al guardar una área.");
+                throw new Exception("Ocurrió un problema al guardar un color.");
             }
         }
 
-        public bool Actualizar(Area entidad)
+        public bool Actualizar(Color entidad)
         {
             bool respuesta = false;
             try
@@ -124,13 +124,13 @@ namespace ALICORP.Repositorios
                 using (var cmd = CreateCommand())
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "usp_Area_Actualizar";
+                    cmd.CommandText = "usp_Color_Actualizar";
 
                     cmd.Parameters.AddWithValue("@id", entidad.Id);
-                    cmd.Parameters.AddWithValue("@codigo", entidad.Codigo ?? Convert.DBNull);
                     cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion);
-                    cmd.Parameters.AddWithValue("@colorfondoid", entidad.ColorFondoId);
-                    cmd.Parameters.AddWithValue("@colortextoid", entidad.ColorTextoId);
+                    cmd.Parameters.AddWithValue("@rgba", entidad.Rgba ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@hex", entidad.Hex ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@clase", entidad.Clase ?? Convert.DBNull);
 
                     respuesta = cmd.ExecuteNonQuery() > 0;
                 }
@@ -138,7 +138,7 @@ namespace ALICORP.Repositorios
             }
             catch (Exception)
             {
-                throw new Exception("Ocurrió un problema al actualizar una área.");
+                throw new Exception("Ocurrió un problema al actualizar un color.");
             }
         }
     }

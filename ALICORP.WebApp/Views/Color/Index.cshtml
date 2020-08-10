@@ -1,13 +1,11 @@
-﻿
-@{
-    ViewBag.Title = "Lista de Empleados";
+﻿@{
+    ViewBag.Title = "Lista de Colores";
 }
-
 <div class="row">
     <div class="col-12">
         <div class="card card-success-border">
             <div class="card-header">
-                <h3 class="card-title"><i class="fab fa-buromobelexperte"></i>&nbsp;@ViewBag.Title</h3>
+                <h3 class="card-title"><i class="fa fa-tint"></i>&nbsp;Lista de Colores</h3>
             </div>
             <div class="card-body">
                 <div id="Error"></div>
@@ -16,19 +14,15 @@
                 </div>
                 <hr />
                 <div class="table-responsive">
-                    <table id="tblEmpleado" class="table table-sm table-bordered table-hover">
+                    <table id="tblColor" class="table table-sm table-bordered table-hover">
                         <thead>
                             <tr class="bg-primary">
                                 <th width="20"></th>
                                 <th width="20">#</th>
-                                <th width="20">Cargo</th>
-                                <th width="20">Area</th>
-                                <th width="20">Nombres</th>
-                                <th width="20">Apellido Paterno</th>
-                                <th width="20">Apellido Materno</th>
-                                <th width="20">Nro. Documento</th>
-                                <th width="20">Correo</th>
-                                <th width="20">Telefono</th>
+                                <th>Descripción</th>
+                                <th width="100">RGBA</th>
+                                <th width="100">HEX</th>
+                                <th width="100">CLASE</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -46,15 +40,15 @@
 <script>
     var index = {
         Listar: function () {
-            var table = $("#tblEmpleado");
+            var table = $("#tblColor");
             $.ajax({
-                url: "/Empleado/Listar",
+                url: "/Color/Listar",
                 type: "GET",
                 dataType: "json",
                 beforeSend: function (xhr) { },
                 complete: function () { },
                 success: function (data) {
-                    if (data.length == 0) table.children('tbody').append("<tr><td colspan='10' class='text-center'>No existen registros</td></tr>");
+                    if (data.length == 0) table.children('tbody').append("<tr><td colspan='7' class='text-center'>No existen registros</td></tr>");
                     else index.GenerarTabla(table, data);
                 },
                 error: function (data) {
@@ -70,14 +64,10 @@
                 rows += `<tr>
                             <td><a class="text-warning option editar" data-id="${r.Id}"><i class="fa fa-pencil-alt"></i></a></td>
                             <td class="text-right">${i + 1}</td>
-                            <td class="text-center">${ r.Cargo.Descripcion || ""}</td>
-                            <td class="text-center">${ r.Area.Descripcion || ""}</td>
-                            <td class="text-center">${ r.Nombre}</td>
-                            <td class="text-center">${ r.ApellidoPaterno}</td>
-                            <td class="text-center">${ r.ApellidoMaterno}</td>
-                            <td class="text-center">${ r.NroDocumento}</td>
-                            <td class="text-center">${ r.Correo || ""}</td>
-                            <td class="text-center">${ r.Telefono || ""}</td>
+                            <td>${ r.Descripcion}</td>
+                            <td class="text-center">${ r.Rgba || ""}</td>
+                            <td class="text-center">${ r.Hex || ""}</td>
+                            <td class="text-center">${ r.Clase || ""}</td>
                         </tr>`;
             });
             tbody.append(rows);
@@ -108,17 +98,17 @@
         index.Listar();
 
         $('#btnNuevo').click(function () {
-            index.AbrirModal('/Empleado/Nuevo', { callBack: 'SetEmpleado' });
+            index.AbrirModal('/Color/Nuevo', { callBack: 'SetColor' });
         });
 
-        $('#tblEmpleado tbody').delegate('a.editar', 'click', function () {
+        $('#tblColor tbody').delegate('a.editar', 'click', function () {
             var id = this.dataset.id;
-            index.AbrirModal('/Empleado/Editar', { callBack: 'SetEmpleado', id });
+            index.AbrirModal('/Color/Editar', { callBack: 'SetColor', id });
         });
 
     });
 
-    var SetEmpleado = function () {
+    var SetColor = function () {
         $('#modal-ventana').modal('hide');
         index.Listar();
     }

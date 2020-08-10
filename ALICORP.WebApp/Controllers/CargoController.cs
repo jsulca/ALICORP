@@ -13,12 +13,13 @@ namespace ALICORP.WebApp.Controllers
     public class CargoController : Controller
     {
         private CargoLogica _cargoLogica;
+
+        #region Acciones
+
         public ActionResult Index()
         {
             return View();
         }
-
-        #region Acciones
 
         public ActionResult Nuevo(string callBack = "SetCargo")
         {
