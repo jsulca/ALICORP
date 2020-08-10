@@ -1,9 +1,0 @@
-C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Repositorios\bin\Debug\ALICORP.Repositorios.dll
-C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Repositorios\bin\Debug\ALICORP.Repositorios.pdb
-C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Repositorios\bin\Debug\ALICORP.Entidades.dll
-C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Repositorios\bin\Debug\ALICORP.Entidades.pdb
-C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Repositorios\obj\Debug\ALICORP.Repositorios.csprojAssemblyReference.cache
-C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Repositorios\obj\Debug\ALICORP.Repositorios.csproj.CoreCompileInputs.cache
-C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Repositorios\obj\Debug\ALICORP.Repositorios.csproj.CopyComplete
-C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Repositorios\obj\Debug\ALICORP.Repositorios.dll
-C:\Users\Junior\Documents\Proyectos\C#\ALICORP\ALICORP.Repositorios\obj\Debug\ALICORP.Repositorios.pdb
