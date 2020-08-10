@@ -245,6 +245,6 @@ ModelManifest.xml
 .fake/
 
 # WebConfig
-SIRNPD.WebApp/Web.config
-SIRNPD.WebApp/Web.Debug.config
-SIRNPD.WebApp/Web.Release.config
+ALICORP.WebApp/Web.config
+ALICORP.WebApp/Web.Debug.config
+ALICORP.WebApp/Web.Release.config
