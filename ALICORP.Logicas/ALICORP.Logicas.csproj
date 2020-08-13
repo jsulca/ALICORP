@@ -50,11 +50,10 @@
     <Compile Include="Administracion\EstructuraAreaLogica.cs" />
     <Compile Include="Administracion\InstanciaLogica.cs" />
     <Compile Include="Administracion\EstructuraLogica.cs" />
+    <Compile Include="ListaVerificacion\VerificacionLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ListaVerificacion\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ALICORP.Contextos\ALICORP.Contextos.csproj">
       <Project>{1eff7180-8d16-4acf-96e4-946fccb51052}</Project>

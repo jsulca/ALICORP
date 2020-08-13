@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DB6F339D-3874-4C2B-B2D3-10FDAF4A6D24}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ALICORP.Entidades</RootNamespace>
-    <AssemblyName>ALICORP.Entidades</AssemblyName>
+    <ProjectGuid>{E713607A-FD40-40E5-AACA-BF249543275C}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ALICORP.TestApp</RootNamespace>
+    <AssemblyName>ALICORP.TestApp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,22 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Genericos\Administracion\Area.cs" />
-    <Compile Include="Genericos\Administracion\Cargo.cs" />
-    <Compile Include="Genericos\Administracion\Color.cs" />
-    <Compile Include="Genericos\Administracion\Empleado.cs" />
-    <Compile Include="Genericos\Administracion\Estructura.cs" />
-    <Compile Include="Genericos\Administracion\EstructuraArea.cs" />
-    <Compile Include="Genericos\Administracion\EstructuraInstancia.cs" />
-    <Compile Include="Genericos\Administracion\Instancia.cs" />
-    <Compile Include="Genericos\ListaVerificacion\Categoria.cs" />
-    <Compile Include="Genericos\ListaVerificacion\Pregunta.cs" />
-    <Compile Include="Genericos\ListaVerificacion\Respuesta.cs" />
-    <Compile Include="Genericos\ListaVerificacion\Verificacion.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Adicionales\" />
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ALICORP.Entidades\ALICORP.Entidades.csproj">
+      <Project>{db6f339d-3874-4c2b-b2d3-10fdaf4a6d24}</Project>
+      <Name>ALICORP.Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ALICORP.Logicas\ALICORP.Logicas.csproj">
+      <Project>{010cebe8-5f1c-4d18-8edd-65b3f377d331}</Project>
+      <Name>ALICORP.Logicas</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
