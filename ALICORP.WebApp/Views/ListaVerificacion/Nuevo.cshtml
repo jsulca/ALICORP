@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Verificacion
+@{
+
     ViewBag.Title = "Nueva Lista de Verificación";
 }
 
@@ -17,12 +19,12 @@
                         <input class="form-control" placeholder="Ingrese el sub-proceso" />
                     </div>
                     <div class="col-6">
-                        <input class="form-control" placeholder="Ingrese una descripción" />
+                        <input class="form-control" placeholder="Ingrese una descripción" id="Descripcion" />
                     </div>
                 </div>
                 <hr />
                 <div class="text-center">
-                    <button type="button" class="btn btn-success"><i class="fa fa-save"></i>&nbsp; Guardar</button>
+                    <button type="button" class="btn btn-success" id="btnGuardar"><i class="fa fa-save"></i>&nbsp; Guardar</button>
                     <a role="button" class="btn btn-warning" href="/ListaVerificacion/Modelar"><i class="fa fa-chevron-left"></i>&nbsp; Retroceder</a>
                 </div>
             </div>
@@ -42,95 +44,31 @@
                 <div class="table-responsive">
                     <table class="table table-borderless table-valign-middle" id="tblFormulario">
                         <thead>
-                            <tr>
+                            <tr class="puntajes">
                                 <th>Escala de evaluación</th>
                                 <td>
                                     <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm font-weight-bold text-center" value="1" />
+                                        <input type="text" class="form-control form-control-sm font-weight-bold text-center puntaje" value="" />
                                         <div class="input-group-append">
-                                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                            <button class="btn btn-danger btn-sm btn-borrar-puntaje"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm font-weight-bold text-center" value="2" />
+                                        <input type="text" class="form-control form-control-sm font-weight-bold text-center puntaje" value="" />
                                         <div class="input-group-append">
-                                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm font-weight-bold text-center" value="3" />
-                                        <div class="input-group-append">
-                                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                            <button class="btn btn-danger btn-sm btn-borrar-puntaje"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                             <tr class="bg-primary">
                                 <th width="40%">Preguntas</th>
-                                <th colspan="3">Respuestas</th>
+                                <th colspan="2" class="respuesta">Respuestas</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="categoria bg-info">
-                                <th colspan="4">
-                                    <div class="input-group">
-                                        <input class="form-control form-control-sm text-center" value="ASPECTOS GENERALES" />
-                                        <div class="input-group-append">
-                                            <button class="btn btn-sm btn-warning" type="button"><i class="fa fa-plus"></i>&nbsp; Agregar Pregunta</button>
-                                        </div>
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input class="form-control form-control-sm font-weight-bold" placeholder="Titulo" value="Ejecución:" />
-                                    <input class="form-control form-control-sm" placeholder="Contenido" value="El DdD" />
-                                </td>
-                                <td>
-                                    <textarea class="form-control form-control-sm">No se realizó, se reagendó o duró menos de lo establecido (< 6min)</textarea>
-                                </td>
-                                <td>
-                                    <textarea class="form-control form-control-sm">Se realizó, pero se extendió (>13 min)</textarea>
-                                </td>
-                                <td>
-                                    <textarea class="form-control form-control-sm">Se realizó de acuerdo a duración planificada</textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input class="form-control form-control-sm font-weight-bold" placeholder="Titulo" value="Agenda:" />
-                                    <input class="form-control form-control-sm" placeholder="Contenido" value="La agenda del DdD" />
-                                </td>
-                                <td>
-                                    <textarea class="form-control form-control-sm">No se siguió la agenda establecida</textarea>
-                                </td>
-                                <td>
-                                    <textarea class="form-control form-control-sm">Se siguió parcialmente la agenda establecida</textarea>
-                                </td>
-                                <td>
-                                    <textarea class="form-control form-control-sm">Se siguió por completo la agenda establecida</textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input class="form-control form-control-sm font-weight-bold" placeholder="Titulo" value="Inicio del DdD:" />
-                                    <input class="form-control form-control-sm" placeholder="Contenido" value="El DdD incluye un mensaje de seguridad / clasificación de seguridad" />
-                                </td>
-                                <td>
-                                    <textarea class="form-control form-control-sm">No</textarea>
-                                </td>
-                                <td>
-                                    <textarea class="form-control form-control-sm">Sí, pero de baja calidad</textarea>
-                                </td>
-                                <td>
-                                    <textarea class="form-control form-control-sm">Sí y fue con calidad</textarea>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>
@@ -138,19 +76,151 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(function (){
+    var cantidadPuntaje = 2;
+    var nuevo = {
+        GenerarUID: function () {
+            var dt = new Date().getTime();
+            var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = (dt + Math.random() * 16) % 16 | 0;
+                dt = Math.floor(dt / 16);
+                return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+            return uuid
+        },
+        ObtenerModelo: function () {
+            var model = {
+                'nombre': $('#Nombre').val(),
+                'activo': $('#Activo').val(),
+                "Categoria": [{
+                    'descripcion': $('#Descripcion').val(),
+                    'orden': $('#Orden').val(),
+                    'eliminado': $('#Eliminado').val(),
+                    "Pregunta": [{
+                        'orden': $('#Orden').val(),
+                        'titulo': $('#Titulo').val(),
+                        'descripcion': $('#Descripcion').val(),
+                        'eliminado': $('#Eliminado').val(),
+                        "Respuesta": [{
+                            'valor': $('#Valor').val(),
+                            'descripcion': $('#Descripcion').val()
+                        }]
+                    }]
+                }]
+            };
+
+            var trCategorias = $('table tbody tr.categoria');
+            var inputPuntajes = $('table thead input.puntaje');
+            var inputRespuestas;
+            console.log(inputPuntajes);
+            var id;
+            $.each(trCategorias, function (i, tr) {
+                model['Categorias[' + i + '].Descripcion'] = $(tr).find('input.descripcion').val();
+                model['Categorias[' + i + '].Orden'] = i + 1;
+                id = tr.dataset.id;
+                trPreguntas = $('table tbody tr.pregunta[data-id="' + id + '"]');
+                $.each(trPreguntas, function (y, tr2) {
+                    model['Categorias[' + i + '].Preguntas[' + y + '].Orden'] = y + 1;
+                    model['Categorias[' + i + '].Preguntas[' + y + '].Titulo'] = $(tr2).find('input.titulo').val();
+                    model['Categorias[' + i + '].Preguntas[' + y + '].Descripcion'] = $(tr2).find('input.descripcion').val();
+
+                    inputRespuestas = $(tr2).find('textarea.respuesta');
+
+                    $.each(inputRespuestas, function (x, rpta) {
+                        model['Categorias[' + i + '].Preguntas[' + y + '].Respuestas[' + x + '].Valor'] = $(inputPuntajes[x]).val();
+                        model['Categorias[' + i + '].Preguntas[' + y + '].Respuestas[' + x + '].Descripcion'] = $(rpta).val();
+
+                    });
+                });
+            });
+
+            //$.each($('table tbody tr.pregunta'), function (i, tr) {
+            //    model['Pregunta[' + i + '].CategoriaId'] = $(tr).find('input.categoriaid').val();
+            //    model['Pregunta[' + i + '].Orden'] = $(tr).find('input.orden').val();
+            //    model['Pregunta[' + i + '].Titulo '] = $(tr).find('input.titulo').val();
+            //    model['Pregunta[' + i + '].Descripcion '] = $(tr).find('input.descripcion').val();
+            //    model['Pregunta[' + i + '].Eliminado'] = $(tr).find('input.eliminado').val();
+            //});
+
+            //$.each($('table tbody tr.respuesta'), function (i, tr) {
+            //    model['Respuesta[' + i + '].PreguntaId '] = $(tr).find('input.preguntaid').val();
+            //    model['Respuesta[' + i + '].Valor '] = $(tr).find('input.valor').val();
+            //    model['Respuesta[' + i + '].Descripcion '] = $(tr).find('input.descripcion').val();
+            //});
+
+            return model;
+        }
+    };
+    $(function () {
         $('#btnAgregarCategoria').click(function () {
-            var categoria = `<tr class="categoria bg-info">
-                                <th colspan="4">
+            var id = nuevo.GenerarUID();
+            var categoria = `<tr class="categoria bg-info" data-id="${id}">
+                                <th colspan="${cantidadPuntaje + 1}">
                                     <div class="input-group">
-                                        <input class="form-control form-control-sm text-center" />
+                                        <input class="form-control form-control-sm text-center descripcion" />
                                         <div class="input-group-append">
-                                            <button class="btn btn-sm btn-warning" type="button"><i class="fa fa-plus"></i>&nbsp; Agregar Pregunta</button>
+                                            <button class="btn btn-sm btn-warning btn-agregar-pregunta" type="button"><i class="fa fa-plus"></i>&nbsp; Agregar Pregunta</button>
+                                            <button class="btn btn-sm btn-danger btn-borrar-categoria" type="button"><i class="fa fa-trash-alt"></i></button>
                                         </div>
                                     </div>
                                 </th>
                             </tr>`;
             $('#tblFormulario tbody').append(categoria);
+        });
+        $('table').delegate('button.btn-borrar-categoria', 'click', function () {
+            var tr = $(this).parents().eq(3);
+            var id = $(tr).data('id');
+            $('table tbody tr[data-id="' + id + '"]').remove();
+        });
+
+        $('#btnAgregarPuntaje').click(function () {
+            $('tr.puntajes').append(`<td>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-sm font-weight-bold text-center puntaje" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-danger btn-sm btn-borrar-puntaje"><i class="fa fa-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </td>`);
+            cantidadPuntaje++;
+            $('th.respuesta').prop('colspan', cantidadPuntaje);
+            $('tr.categoria > th').prop('colspan', cantidadPuntaje + 1);
+            $.each($('table tbody tr.pregunta'), function (i, tr) {
+                $(tr).append('<td><textarea class="form-control form-control-sm respuesta"></textarea></td>');
+            });
+        });
+
+        $('#tblFormulario tbody tr').parents().eq(1);
+
+        $('table').delegate('button.btn-borrar-puntaje', 'click', function () {
+            var td = $(this).parents().eq(2);
+            $.each($('table tbody tr.pregunta'), function (i, tr) {
+                $(tr).find('td')[td.index()].remove();
+            });
+            td.remove();
+            cantidadPuntaje--;
+            $('th.respuesta').prop('colspan', cantidadPuntaje);
+            $('tr.categoria > th').prop('colspan', cantidadPuntaje + 1);
+        });
+
+        $('table').delegate('button.btn-agregar-pregunta', 'click', function () {
+            var tr = $(this).parents().eq(3);
+            var id = $(tr).data('id');
+            var rowsPregunta = '';
+            cantidadPuntaje;
+            for (var i = 0; i < cantidadPuntaje; i++) rowsPregunta += '<td><textarea class="form-control form-control-sm respuesta"></textarea></td>';
+
+            $(tr).after(`<tr class="pregunta" data-id="${id}">
+                                <td>
+                                    <input class="form-control form-control-sm font-weight-bold titulo" placeholder="Titulo" />
+                                    <input class="form-control form-control-sm descripcion" placeholder="Contenido" />
+                                </td>
+                               ${rowsPregunta}
+                            </tr>`);
+        });
+
+        $('#btnGuardar').click(function () {
+            var model = nuevo.ObtenerModelo();
+            console.log(model);
         });
     });
 </script>

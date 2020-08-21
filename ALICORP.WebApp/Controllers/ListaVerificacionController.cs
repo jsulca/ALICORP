@@ -10,7 +10,6 @@ namespace ALICORP.WebApp.Controllers
     {
         #region Acciones
 
-
         public ActionResult Index()
         {
             return View();
