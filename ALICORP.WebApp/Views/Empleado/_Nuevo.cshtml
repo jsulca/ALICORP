@@ -16,13 +16,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="AreaId">Area: </label>
-                        @Html.DropDownListFor(m => m.AreaId, new SelectList(areas, "Id", "Descripcion"), "NINGUNO", new { @class= "form-control form-control-sm" })
+                        @Html.DropDownListFor(m => m.AreaId, new SelectList(areas, "Id", "Descripcion"), "NINGUNO", new { @class= "form-control form-control-sm text-uppercase" })
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="CargoId">Cargo: </label>
-                        @Html.DropDownListFor(m => m.CargoId, new SelectList(cargos, "Id", "Descripcion"), "NINGUNO", new { @class = "form-control form-control-sm" })
+                        @Html.DropDownListFor(m => m.CargoId, new SelectList(cargos, "Id", "Descripcion"), "NINGUNO", new { @class = "form-control form-control-sm text-uppercase" })
                     </div>
                 </div>
             </div>
@@ -30,19 +30,19 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="ApellidoPaterno">Apellido Paterno: <span class="text-danger">(*)</span></label>
-                        @Html.TextBoxFor(m => m.ApellidoPaterno, new { @class = "form-control form-control-sm" })
+                        @Html.TextBoxFor(m => m.ApellidoPaterno, new { @class = "form-control form-control-sm text-uppercase" })
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="ApellidoMaterno">Apellido Materno: <span class="text-danger">(*)</span></label>
-                        @Html.TextBoxFor(m => m.ApellidoMaterno, new { @class = "form-control form-control-sm" })
+                        @Html.TextBoxFor(m => m.ApellidoMaterno, new { @class = "form-control form-control-sm text-uppercase" })
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="Nombre">Nombres: <span class="text-danger">(*)</span></label>
-                        @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-sm" })
+                        @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-sm text-uppercase" })
                     </div>
                 </div>
             </div>
@@ -50,19 +50,19 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="NroDocumento">Nro. Documento: <span class="text-danger">(*)</span></label>
-                        @Html.TextBoxFor(m => m.NroDocumento, new { @class = "form-control form-control-sm" })
+                        @Html.TextBoxFor(m => m.NroDocumento, new { @class = "form-control form-control-sm text-uppercase" })
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="Telefono">Telefono: </label>
-                        @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control form-control-sm" })
+                        @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control form-control-sm text-uppercase" })
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="Correo">Correo: </label>
-                        @Html.TextBoxFor(m => m.Correo, new { @class = "form-control form-control-sm" })
+                        @Html.TextBoxFor(m => m.Correo, new { @class = "form-control form-control-sm text-uppercase" })
                     </div>
                 </div>
             </div>

@@ -13,5 +13,8 @@ namespace ALICORP.Entidades
         public int ColorTextoId { get; set; }
         public string Abreviatura { get; set; }
         public string Descripcion { get; set; }
+
+        public Color ColorFondo { get; set; }
+        public Color ColorTexto { get; set; }
     }
 }

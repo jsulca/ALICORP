@@ -50,6 +50,7 @@
     <Compile Include="Administracion\EstructuraAreaLogica.cs" />
     <Compile Include="Administracion\InstanciaLogica.cs" />
     <Compile Include="Administracion\EstructuraLogica.cs" />
+    <Compile Include="Compromiso\CompromisoLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

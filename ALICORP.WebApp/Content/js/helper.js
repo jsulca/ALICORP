@@ -50,14 +50,14 @@
     pagination: {
         btnNames: ['<i class="fa fa-angle-left"></i><i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right">', '<i class="fa fa-angle-right"></i><i class="fa fa-angle-right"></i>'],
         btnPages: 7,
-        btnClass: 'pagination pagination-sm mb-0 mt-0 justify-content-end',
+        btnClass: 'pagination pagination-sm mb-0 mt-0',
         update: function (table, btnPages, btnNames, btnClass) {
             if (btnPages == null) btnPages = helper.pagination.btnPages;
             if (btnNames == null) btnNames = helper.pagination.btnNames;
             if (btnClass == null) btnClass = helper.pagination.btnClass;
 
-            var paginator = $('#' + table.data('paginator'));
-            var totaltext = $('#' + table.data('totaltext'));
+            var paginator = $(table.data('paginator'));
+            var totaltext = $(table.data('totaltext'));
             var page = table.data('pageindex');
             var fn = table.data('function');
             var nPaginas = Math.ceil(table.data('totalrows') / table.data('pagesize'));

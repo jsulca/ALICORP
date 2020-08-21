@@ -99,7 +99,7 @@
             var tbody = table.children('tbody');
             tbody.children('tr').remove();
             tbody.append(rows);
-            table.treetable({ expandable: true, initialState: 'expanded', nodeIdAttr: 'id', parentIdAttr: 'padreid' }, true);
+            table.treetable({ expandable: true, nodeIdAttr: 'id', parentIdAttr: 'padreid' }, true);
         },
         ListarEstructura: function (padreId, estructuras) {
             var rows = '', hijos = [];

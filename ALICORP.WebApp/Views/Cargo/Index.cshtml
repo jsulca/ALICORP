@@ -48,7 +48,7 @@
                 beforeSend: function (xhr) { },
                 complete: function () { },
                 success: function (data) {
-                    if (data.length == 0) table.children('tbody').append("<tr><td colspan='4' class='text-center'>No existen registros</td></tr>");
+                    if (data.length == 0) table.children('tbody').append("<tr><td colspan='5' class='text-center'>No existen registros</td></tr>");
                     else index.GenerarTabla(table, data);
                 },
                 error: function (data) {

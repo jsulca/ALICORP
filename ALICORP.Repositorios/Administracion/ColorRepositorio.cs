@@ -100,7 +100,7 @@ namespace ALICORP.Repositorios
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "usp_Color_Guardar";
 
-                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion);
+                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion.ToUpper());
                     cmd.Parameters.AddWithValue("@rgba", entidad.Rgba ?? Convert.DBNull);
                     cmd.Parameters.AddWithValue("@hex", entidad.Hex ?? Convert.DBNull);
                     cmd.Parameters.AddWithValue("@clase", entidad.Clase ?? Convert.DBNull);
@@ -127,7 +127,7 @@ namespace ALICORP.Repositorios
                     cmd.CommandText = "usp_Color_Actualizar";
 
                     cmd.Parameters.AddWithValue("@id", entidad.Id);
-                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion);
+                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion.ToUpper());
                     cmd.Parameters.AddWithValue("@rgba", entidad.Rgba ?? Convert.DBNull);
                     cmd.Parameters.AddWithValue("@hex", entidad.Hex ?? Convert.DBNull);
                     cmd.Parameters.AddWithValue("@clase", entidad.Clase ?? Convert.DBNull);

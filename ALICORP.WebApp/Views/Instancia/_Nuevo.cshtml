@@ -21,13 +21,13 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="ColorFondoId">Color Fondo: <span class="text-danger">(*)</span></label>
-                        @Html.DropDownListFor(m => m.ColorFondoId, new SelectList(colores, "Id", "Descripcion"), new { @class = "form-control form-control-sm" })
+                        @Html.DropDownListFor(m => m.ColorFondoId, new SelectList(colores, "Id", "Descripcion"), new { @class = "form-control form-control-sm text-uppercase" })
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="ColorTextoId">Color Texto: <span class="text-danger">(*)</span></label>
-                        @Html.DropDownListFor(m => m.ColorTextoId, new SelectList(colores, "Id", "Descripcion"), new { @class = "form-control form-control-sm" })
+                        @Html.DropDownListFor(m => m.ColorTextoId, new SelectList(colores, "Id", "Descripcion"), new { @class = "form-control form-control-sm text-uppercase" })
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                 <div class="col-12">
                     <div class="form-group">
                         <label for="Descripcion">Descripción: <span class="text-danger">(*)</span></label>
-                        @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control form-control-sm" })
+                        @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control form-control-sm text-uppercase" })
                     </div>
                 </div>
             </div>

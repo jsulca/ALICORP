@@ -1,4 +1,5 @@
 ﻿using ALICORP.Entidades;
+using ALICORP.Entidades.Filtros;
 using ALICORP.Repositorios.Common;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace ALICORP.Repositorios
 
         #endregion
 
-        public List<Estructura> Listar()
+        public List<Estructura> Listar(EstructuraFiltro filtro)
         {
             List<Estructura> lista = new List<Estructura>();
             try
@@ -29,6 +30,8 @@ namespace ALICORP.Repositorios
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "usp_Estructura_Listar";
+
+                    cmd.Parameters.AddWithValue("@tablero", filtro?.Tablero ?? Convert.DBNull);
 
                     using (var rd = cmd.ExecuteReader())
                     {
@@ -101,8 +104,8 @@ namespace ALICORP.Repositorios
                     cmd.CommandText = "usp_Estructura_Guardar";
 
                     cmd.Parameters.AddWithValue("@padreid", entidad.PadreId ?? Convert.DBNull);
-                    cmd.Parameters.AddWithValue("@codigo", entidad.Codigo ?? Convert.DBNull);
-                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion);
+                    cmd.Parameters.AddWithValue("@codigo", entidad.Codigo?.ToUpper() ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion.ToUpper());
                     cmd.Parameters.AddWithValue("@tablero", entidad.Tablero);
 
                     entidad.Id = int.Parse(cmd.ExecuteScalar().ToString());
@@ -127,8 +130,9 @@ namespace ALICORP.Repositorios
                     cmd.CommandText = "usp_Estructura_Actualizar";
 
                     cmd.Parameters.AddWithValue("@id", entidad.Id);
-                    cmd.Parameters.AddWithValue("@codigo", entidad.Codigo ?? Convert.DBNull);
-                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion);
+                    cmd.Parameters.AddWithValue("@codigo", entidad.Codigo?.ToUpper() ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion.ToUpper());
+                    cmd.Parameters.AddWithValue("@tablero", entidad.Tablero);
 
                     respuesta = cmd.ExecuteNonQuery() > 0;
                 }
@@ -157,6 +161,26 @@ namespace ALICORP.Repositorios
             catch (Exception)
             {
                 throw new Exception("Ocurrió un problema al validar.");
+            }
+        }
+
+        public string Ruta(int id)
+        {
+            try
+            {
+                using (var cmd = CreateCommand())
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "usp_Estructura_Ruta";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    return cmd.ExecuteScalar().ToString();
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurrió un problema al crear la ruta.");
             }
         }
     }

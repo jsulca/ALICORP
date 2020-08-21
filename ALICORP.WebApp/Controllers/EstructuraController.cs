@@ -31,12 +31,17 @@ namespace ALICORP.WebApp.Controllers
 
             try
             {
+                _areaLogica = new AreaLogica();
+                ViewBag.Areas = _areaLogica.Listar();
+
                 ViewBag.CallBack = callBack;
                 return PartialView("_Nuevo", model);
             }
             catch (Exception ex)
             {
-                throw ex;
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                ViewBag.Message = ex.Message;
+                return PartialView("_Error");
             }
         }
 
@@ -95,10 +100,19 @@ namespace ALICORP.WebApp.Controllers
         {
             try
             {
+                _estructuraLogica = new EstructuraLogica();
+
                 Validar(model);
                 if (ModelState.IsValid)
                 {
-                    _estructuraLogica = new EstructuraLogica();
+                    if (model.Tablero && model.PadreId.HasValue && _estructuraLogica.TieneTablero(model.PadreId.Value))
+                        ModelState.AddModelError("Tablero", "No puede agregar un tablero dentro de otro.");
+                }
+                if (ModelState.IsValid)
+                {
+                    Estructura item = _estructuraLogica.Buscar(model.Id);
+                    model.Tablero = item.Tablero;
+
                     _estructuraLogica.Actualizar(model);
                     return Content(model.Id.ToString());
                 }

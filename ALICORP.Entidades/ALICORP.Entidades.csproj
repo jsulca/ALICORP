@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contanstes.cs" />
+    <Compile Include="Filtros\CompromisoFiltro.cs" />
+    <Compile Include="Filtros\EstructuraFiltro.cs" />
     <Compile Include="Genericos\Administracion\Area.cs" />
     <Compile Include="Genericos\Administracion\Cargo.cs" />
     <Compile Include="Genericos\Administracion\Color.cs" />
@@ -49,6 +52,7 @@
     <Compile Include="Genericos\Administracion\EstructuraArea.cs" />
     <Compile Include="Genericos\Administracion\EstructuraInstancia.cs" />
     <Compile Include="Genericos\Administracion\Instancia.cs" />
+    <Compile Include="Genericos\Compromiso\Compromiso.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

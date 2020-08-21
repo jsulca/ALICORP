@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Mis compromisos";
 }
 
@@ -10,15 +9,18 @@
                 <h3 class="card-title"><i class="fas fa-user-tag"></i>&nbsp;Mis Compromisos</h3>
             </div>
             <div class="card-body">
-                <div class="form-row">
-                    <div class="col-4">
-                        <input class="form-control" placeholder="Ingrese el Código" />
+                <div class="form-row" id="Filtros">
+                    <div class="col-2">
+                        <input class="form-control" placeholder="Ingrese el Código" id="FCodigo" />
                     </div>
-                    <div class="col-4">
-                        <input class="form-control" placeholder="Ingrese la breve descripción" />
+                    <div class="col-2">
+                        @Html.DropDownList("FEstado", EnumHelper.GetSelectList(typeof(EstadoCompromiso)), "TODOS", new { @class="form-control"})
                     </div>
-                    <div class="col-4">
-                        <input class="form-control" placeholder="Ingrese la fecha" />
+                    <div class="col-6">
+                        <input class="form-control" placeholder="Ingrese la breve descripción" id="FDescripcion" />
+                    </div>
+                    <div class="col-2">
+                        <input class="form-control" placeholder="Ingrese la fecha" id="FFecha" />
                     </div>
                 </div>
                 <hr />
@@ -32,82 +34,15 @@
         </div>
     </div>
     <div class="col-12">
-        <div id="list">
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-header bg-primary">
-                            &nbsp;
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title float-none">CM-00000004</h4>
-                            <p class="font-weight-bold">PROGRAMADO</p>
-                            <p class="card-text">Una breve descripcion del compromiso creado</p>
-                            <a href="#" class="btn btn-info"><i class="fa fa-calendar-alt"></i>&nbsp; Seguimiento</a>
-                        </div>
-                        <div class="card-footer text-muted text-center">
-                            @DateTime.Now.ToString("dd/MM/yyyy HH:mm")
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-header bg-success">
-                            &nbsp;
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title float-none">CM-00000003</h4>
-                            <p class="font-weight-bold">FINALIZADO</p>
-                            <p class="card-text">Una breve descripcion del compromiso creado</p>
-                            <a href="#" class="btn btn-info"><i class="fa fa-calendar-alt"></i>&nbsp; Seguimiento</a>
-                        </div>
-                        <div class="card-footer text-muted text-center">
-                            @DateTime.Now.AddDays(-7).ToString("dd/MM/yyyy HH:mm")
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-header bg-light">
-                            &nbsp;
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title float-none">CM-00000002</h4>
-                            <p class="font-weight-bold">NUEVO</p>
-                            <p class="card-text">Una breve descripcion del compromiso creado</p>
-                            <a href="#" class="btn btn-info"><i class="fa fa-calendar-alt"></i>&nbsp; Seguimiento</a>
-                        </div>
-                        <div class="card-footer text-muted text-center">
-                            @DateTime.Now.AddDays(-15).ToString("dd/MM/yyyy HH:mm")
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-header bg-warning">
-                            &nbsp;
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title float-none">CM-00000001</h4>
-                            <p class="font-weight-bold">PROGRAMADO</p>
-                            <p class="card-text">Una breve descripcion del compromiso creado</p>
-                            <a href="#" class="btn btn-info"><i class="fa fa-calendar-alt"></i>&nbsp; Seguimiento</a>
-                        </div>
-                        <div class="card-footer text-muted text-center">
-                            @DateTime.Now.AddDays(-20).ToString("dd/MM/yyyy HH:mm")
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
+        <div id="list" data-pagesize="8" data-pageindex="1" data-function="index.Listar" data-totalrows="0" data-paginator="#paginator" class="row"></div>
+        <div id="paginator" class="d-flex justify-content-center"></div>
     </div>
 </div>
 <div class="modal" id="modal-ventana">
     <div id="ventana-container"></div>
 </div>
-
+<!-- SweetAlert2 -->
+<script src="~/Content/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 <script>
     var index = {
         AbrirModal: function (url, model) {
@@ -127,12 +62,104 @@
                     $('#modal-ventana').modal('hide');
                 }
             });
+        },
+        Listar: function (page) {
+            var table = $("#list");
+            var model = {
+                'pageIndex': page,
+                'pageSize': table.data('pagesize'),
+                'filter.Codigo': $("#FCodigo").val(),
+                'filter.Descripcion': $("#FDescripcion").val(),
+                'filter.Estado': $("#FEstado").val()
+            };
+            $.ajax({
+                url: "/Compromiso/ListarPorPagina",
+                type: "GET",
+                data: model,
+                dataType: "json",
+                beforeSend: function (xhr) {
+                    $('.refresh-container').attr('style', 'display: block');
+                },
+                complete: function () {
+                    $('.refresh-container').removeAttr('style');
+                },
+                success: function (data) {
+                    table.data('pageindex', page);
+                    table.data('totalrows', data.totalRows);
+                    index.GenerarTabla(table, data.lista);
+                    if (data.totalRows == 0) table.append(`<div class="col-md-12"><div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> No existen registros.</div></div>`);
+                },
+                error: function (data) {
+                    helper.errorShow('#Error', data.responseText)
+                }
+            });
+        },
+        GenerarTabla: function (table, lista) {
+            table.children('div').remove();
+            var rows = '';
+            for (var i = 0; i < lista.length; i += 4) {
+                //rows += `<div class="row">`;
+                if (lista[i]) rows += index.ObtenerItem(lista[i]);
+                if (lista[i + 1]) rows += index.ObtenerItem(lista[i + 1]);
+                if (lista[i + 2]) rows += index.ObtenerItem(lista[i + 2]);
+                if (lista[i + 3]) rows += index.ObtenerItem(lista[i + 3]);
+                //rows += `</div>`;
+            }
+            helper.pagination.update(table);
+            table.append(rows);
+        },
+        ObtenerItem: function (item) {
+            return `<div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card text-center">
+                            ${item.Nuevo ? `<div class="ribbon-wrapper ribbon-lg"><div class="ribbon bg-info text-lg">Nuevo</div></div>` : ''}
+                            <div class="card-header bg-light">
+                                &nbsp;
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title float-none">${item.Codigo}</h4>
+                                <p class="font-weight-bold">${item.Estado}</p>
+                                <p class="card-text text-truncate">${item.Descripcion}</p>
+                                <button type="button" class="btn btn-info seguimiento" data-id="${item.Id}"><i class="fa fa-calendar-alt"></i>&nbsp; Seguimiento</button>
+                            </div>
+                            <div class="card-footer text-muted text-center">${item.Fecha}</div>
+                        </div>
+                    </div>`
         }
     };
 
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'bottom',
+        showConfirmButton: false,
+        timer: 2500
+    });
+
     $(function () {
+        $('#Filtros input').keypress(function (e) {
+            var key = e.keyCode || event.keyCode;
+            if (key == 13) index.Listar(1);
+        });
+        $('#Filtros select').change(function (e) { index.Listar(1); });
         $('#btnNuevo').click(function () {
             index.AbrirModal('/Compromiso/Nuevo', {});
         });
+        $('#list').delegate('button.seguimiento', 'click', function () {
+            var id = this.dataset.id;
+
+            index.AbrirModal('/Compromiso/Seguimiento', { id });
+        });
+
+        index.Listar(1);
     });
+
+    var SetCompromiso = function () {
+        $('#modal-ventana').modal('hide');
+        index.Listar(1);
+        Toast.fire({
+            type: 'success',
+            title: 'Se registro el compromiso.'
+        });
+
+    }
+
 </script>

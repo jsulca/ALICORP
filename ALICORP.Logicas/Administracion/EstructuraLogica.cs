@@ -1,5 +1,6 @@
 ﻿using ALICORP.Contextos;
 using ALICORP.Entidades;
+using ALICORP.Entidades.Filtros;
 using ALICORP.Repositorios;
 using System;
 using System.Collections.Generic;
@@ -16,14 +17,14 @@ namespace ALICORP.Logicas
 
         #region Sin Transaccion
 
-        public List<Estructura> Listar()
+        public List<Estructura> Listar(EstructuraFiltro filtro = null)
         {
             using (_contexto = new ALICORPContexto())
             {
                 try
                 {
                     _repositorio = new EstructuraRepositorio(_contexto.Connection);
-                    return _repositorio.Listar();
+                    return _repositorio.Listar(filtro);
                 }
                 catch (Exception ex)
                 {
@@ -56,6 +57,22 @@ namespace ALICORP.Logicas
                 {
                     _repositorio = new EstructuraRepositorio(_contexto.Connection);
                     return _repositorio.TieneTablero(id);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public string Ruta(int id)
+        {
+            using (_contexto = new ALICORPContexto())
+            {
+                try
+                {
+                    _repositorio = new EstructuraRepositorio(_contexto.Connection);
+                    return _repositorio.Ruta(id);
                 }
                 catch (Exception ex)
                 {
@@ -109,7 +126,7 @@ namespace ALICORP.Logicas
                     if (areas != null) estructuraAreaRepositorio.Guardar(areas);
 
                     _contexto.Transaction.Commit();
-                    
+
                 }
                 catch (Exception ex)
                 {

@@ -97,8 +97,8 @@ namespace ALICORP.Repositorios
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "usp_Cargo_Guardar";
 
-                    cmd.Parameters.AddWithValue("@codigo", entidad.Codigo ?? Convert.DBNull);
-                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion);
+                    cmd.Parameters.AddWithValue("@codigo", entidad.Codigo?.ToUpper() ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion.ToUpper());
                     cmd.Parameters.AddWithValue("@activo", entidad.Activo);
 
                     entidad.Id = int.Parse(cmd.ExecuteScalar().ToString());
@@ -123,8 +123,8 @@ namespace ALICORP.Repositorios
                     cmd.CommandText = "usp_Cargo_Actualizar";
 
                     cmd.Parameters.AddWithValue("@id", entidad.Id);
-                    cmd.Parameters.AddWithValue("@codigo", entidad.Codigo ?? Convert.DBNull);
-                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion);
+                    cmd.Parameters.AddWithValue("@codigo", entidad.Codigo?.ToUpper() ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion.ToUpper());
                     cmd.Parameters.AddWithValue("@activo", entidad.Activo);
 
                     respuesta = cmd.ExecuteNonQuery() > 0;

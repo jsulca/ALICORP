@@ -100,8 +100,8 @@ namespace ALICORP.Repositorios
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "usp_Area_Guardar";
 
-                    cmd.Parameters.AddWithValue("@codigo", entidad.Codigo ?? Convert.DBNull);
-                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion);
+                    cmd.Parameters.AddWithValue("@codigo", entidad.Codigo?.ToUpper() ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion.ToUpper());
                     cmd.Parameters.AddWithValue("@colorfondoid", entidad.ColorFondoId);
                     cmd.Parameters.AddWithValue("@colortextoid", entidad.ColorTextoId);
 
@@ -127,8 +127,8 @@ namespace ALICORP.Repositorios
                     cmd.CommandText = "usp_Area_Actualizar";
 
                     cmd.Parameters.AddWithValue("@id", entidad.Id);
-                    cmd.Parameters.AddWithValue("@codigo", entidad.Codigo ?? Convert.DBNull);
-                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion);
+                    cmd.Parameters.AddWithValue("@codigo", entidad.Codigo?.ToUpper() ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@descripcion", entidad.Descripcion.ToUpper());
                     cmd.Parameters.AddWithValue("@colorfondoid", entidad.ColorFondoId);
                     cmd.Parameters.AddWithValue("@colortextoid", entidad.ColorTextoId);
 

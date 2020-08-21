@@ -1180,6 +1180,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EstructuraModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1292,6 +1293,8 @@
     <Content Include="Views\Color\_Editar.cshtml" />
     <Content Include="Views\Color\_Nuevo.cshtml" />
     <Content Include="Views\Color\Index.cshtml" />
+    <Content Include="Views\Compromiso\_Editar.cshtml" />
+    <Content Include="Views\Empleado\Masivo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1301,7 +1304,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Content\plugins\fullcalendar-bootstrap\main.d.ts" />

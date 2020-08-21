@@ -128,6 +128,30 @@ namespace ALICORP.WebApp.Controllers
             }
         }
 
+        public ActionResult Masivo()
+        {
+            try
+            {
+                _empleadoLogica = new EmpleadoLogica();
+
+                List<Cargo> cargos = null;
+                List<Area> areas = null;
+
+                _empleadoLogica.ObtenerParametros(ref cargos, ref areas);
+
+                ViewBag.Cargos = cargos ?? new List<Cargo>();
+                ViewBag.Areas = areas ?? new List<Area>();
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                ViewBag.Message = ex.Message;
+                return PartialView("_Error");
+            }
+        }
+
         public ActionResult Listar()
         {
             try

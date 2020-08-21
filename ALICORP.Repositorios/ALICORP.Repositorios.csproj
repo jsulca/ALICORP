@@ -50,6 +50,7 @@
     <Compile Include="Administracion\EstructuraInstanciaRepositorio.cs" />
     <Compile Include="Administracion\InstanciaRepositorio.cs" />
     <Compile Include="Administracion\EstructuraRepositorio.cs" />
+    <Compile Include="Compromiso\CompromisoRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

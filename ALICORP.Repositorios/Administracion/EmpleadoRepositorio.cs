@@ -111,12 +111,12 @@ namespace ALICORP.Repositorios
 
                     cmd.Parameters.AddWithValue("@cargoid", entidad.CargoId ?? Convert.DBNull);
                     cmd.Parameters.AddWithValue("@areaid", entidad.AreaId ?? Convert.DBNull);
-                    cmd.Parameters.AddWithValue("@nombre", entidad.Nombre);
-                    cmd.Parameters.AddWithValue("@apellidopaterno", entidad.ApellidoPaterno);
-                    cmd.Parameters.AddWithValue("@apellidomaterno", entidad.ApellidoMaterno);
-                    cmd.Parameters.AddWithValue("@nrodocumento", entidad.NroDocumento);
-                    cmd.Parameters.AddWithValue("@correo", entidad.Correo ?? Convert.DBNull);
-                    cmd.Parameters.AddWithValue("@telefono", entidad.Telefono ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@nombre", entidad.Nombre.ToUpper());
+                    cmd.Parameters.AddWithValue("@apellidopaterno", entidad.ApellidoPaterno.ToUpper());
+                    cmd.Parameters.AddWithValue("@apellidomaterno", entidad.ApellidoMaterno.ToUpper());
+                    cmd.Parameters.AddWithValue("@nrodocumento", entidad.NroDocumento.ToUpper());
+                    cmd.Parameters.AddWithValue("@correo", entidad.Correo?.ToUpper() ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@telefono", entidad.Telefono?.ToUpper() ?? Convert.DBNull);
 
                     entidad.Id = int.Parse(cmd.ExecuteScalar().ToString());
                     respuesta = entidad.Id > 0;
@@ -142,12 +142,12 @@ namespace ALICORP.Repositorios
                     cmd.Parameters.AddWithValue("@id", entidad.Id);
                     cmd.Parameters.AddWithValue("@cargoid", entidad.CargoId ?? Convert.DBNull);
                     cmd.Parameters.AddWithValue("@areaid", entidad.AreaId ?? Convert.DBNull);
-                    cmd.Parameters.AddWithValue("@nombre", entidad.Nombre);
-                    cmd.Parameters.AddWithValue("@apellidopaterno", entidad.ApellidoPaterno);
-                    cmd.Parameters.AddWithValue("@apellidomaterno", entidad.ApellidoMaterno);
-                    cmd.Parameters.AddWithValue("@nrodocumento", entidad.NroDocumento);
-                    cmd.Parameters.AddWithValue("@correo", entidad.Correo ?? Convert.DBNull);
-                    cmd.Parameters.AddWithValue("@telefono", entidad.Telefono ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@nombre", entidad.Nombre.ToUpper());
+                    cmd.Parameters.AddWithValue("@apellidopaterno", entidad.ApellidoPaterno.ToUpper());
+                    cmd.Parameters.AddWithValue("@apellidomaterno", entidad.ApellidoMaterno.ToUpper());
+                    cmd.Parameters.AddWithValue("@nrodocumento", entidad.NroDocumento.ToUpper());
+                    cmd.Parameters.AddWithValue("@correo", entidad.Correo?.ToUpper() ?? Convert.DBNull);
+                    cmd.Parameters.AddWithValue("@telefono", entidad.Telefono?.ToUpper() ?? Convert.DBNull);
 
                     respuesta = cmd.ExecuteNonQuery() > 0;
                 }
