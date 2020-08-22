@@ -52,12 +52,10 @@
     <Compile Include="Genericos\Administracion\EstructuraArea.cs" />
     <Compile Include="Genericos\Administracion\EstructuraInstancia.cs" />
     <Compile Include="Genericos\Administracion\Instancia.cs" />
-    <Compile Include="Genericos\Compromiso\Compromiso.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Adicionales\" />
-    <Folder Include="Genericos\ListaVerificacion\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
