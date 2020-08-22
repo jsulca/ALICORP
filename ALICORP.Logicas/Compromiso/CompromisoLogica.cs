@@ -24,7 +24,7 @@ namespace ALICORP.Logicas
                 try
                 {
                     _repositorio = new CompromisoRepositorio(_contexto.Connection);
-                    return _repositorio.ListarPorPagina(filtro, page, pageSize, ref totalRows, "id", "DESC");
+                    return _repositorio.ListarPorPagina(filtro, page, pageSize, ref totalRows, "T1.id", "DESC");
                 }
                 catch (Exception ex)
                 {
@@ -33,14 +33,25 @@ namespace ALICORP.Logicas
             }
         }
 
-        public Compromiso Buscar(int id)
+        public Compromiso Buscar(int id, bool conDetalles = false)
         {
+            CompromisoEstadoRepositorio compromisoEstadoRepositorio;
+            Compromiso entidad;
+
             using (_contexto = new ALICORPContexto())
             {
                 try
                 {
                     _repositorio = new CompromisoRepositorio(_contexto.Connection);
-                    return _repositorio.Buscar(id);
+                    entidad = _repositorio.Buscar(id);
+
+                    if (conDetalles)
+                    {
+                        compromisoEstadoRepositorio = new CompromisoEstadoRepositorio(_contexto.Connection);
+                        entidad.Estados = compromisoEstadoRepositorio.Listar(id);
+                    }
+
+                    return entidad;
                 }
                 catch (Exception ex)
                 {
@@ -55,17 +66,24 @@ namespace ALICORP.Logicas
 
         public void Guardar(Compromiso entidad)
         {
+            CompromisoEstadoRepositorio compromisoEstadoRepositorio;
+
             using (_contexto = new ALICORPContexto(true))
             {
                 try
                 {
                     _repositorio = new CompromisoRepositorio(_contexto.Connection, _contexto.Transaction);
+                    compromisoEstadoRepositorio = new CompromisoEstadoRepositorio(_contexto.Connection, _contexto.Transaction);
 
                     entidad.Codigo = (_repositorio.Contar(entidad.EstructuraId) + 1).ToString("D10");
 
                     if (_repositorio.Guardar(entidad))
                     {
-
+                        compromisoEstadoRepositorio.Guardar(new CompromisoEstado
+                        {
+                            CompromisoId = entidad.Id,
+                            Estado = EstadoCompromiso.NUEVO
+                        });
                     }
                     _contexto.Transaction.Commit();
                 }
@@ -94,6 +112,37 @@ namespace ALICORP.Logicas
                 }
             }
         }
+
+        public void Finalizar(int id, string respuesta)
+        {
+            CompromisoEstadoRepositorio compromisoEstadoRepositorio;
+            using (_contexto = new ALICORPContexto(true))
+            {
+                try
+                {
+                    _repositorio = new CompromisoRepositorio(_contexto.Connection, _contexto.Transaction);
+                    compromisoEstadoRepositorio = new CompromisoEstadoRepositorio(_contexto.Connection, _contexto.Transaction);
+
+                    EstadoCompromiso estado = EstadoCompromiso.FINALIZADO;
+
+                    if (_repositorio.Finalizar(id, respuesta, estado))
+                    {
+                        compromisoEstadoRepositorio.Guardar(new CompromisoEstado
+                        {
+                            CompromisoId = id,
+                            Estado = estado
+                        });
+                    }
+                    _contexto.Transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    _contexto?.Transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
         #endregion
     }
 }

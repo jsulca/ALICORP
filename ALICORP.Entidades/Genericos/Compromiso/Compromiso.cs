@@ -30,5 +30,6 @@ namespace ALICORP.Entidades
         public Area Area { get; set; }
         public Instancia Instancia { get; set; }
         public Empleado Empleado { get; set; }
+        public List<CompromisoEstado> Estados { get; set; }
     }
 }

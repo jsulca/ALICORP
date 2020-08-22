@@ -21,7 +21,7 @@ namespace ALICORP.Repositorios
 
         #endregion
 
-        public List<Compromiso> ListarPorPagina(CompromisoFiltro filtro, int page, int pageSize, ref int totalRows, string orderBy = "id", string sortBy = "ASC")
+        public List<Compromiso> ListarPorPagina(CompromisoFiltro filtro, int page, int pageSize, ref int totalRows, string orderBy, string sortBy)
         {
             List<Compromiso> lista = new List<Compromiso>();
             try
@@ -55,7 +55,8 @@ namespace ALICORP.Repositorios
                                 Codigo = rd.GetString(1),
                                 Descripcion = rd.GetString(2),
                                 FechaRegistro = rd.GetDateTime(3),
-                                Estado = (EstadoCompromiso)rd.GetInt32(4)
+                                Estado = (EstadoCompromiso)rd.GetInt32(4),
+                                Tablero = new Estructura { Descripcion = rd.GetString(5) }
                             });
                         }
                         rd.Close();
@@ -94,7 +95,9 @@ namespace ALICORP.Repositorios
                                 Estado = (EstadoCompromiso)rd.GetInt32(3),
                                 EstructuraId = rd.GetInt32(4),
                                 Detalle = !rd.IsDBNull(5) ? rd.GetString(5) : null,
-                                TableroId = rd.GetInt32(6)
+                                TableroId = rd.GetInt32(6),
+                                Respuesta = !rd.IsDBNull(7) ? rd.GetString(7) : null,
+                                FechaRegistro = rd.GetDateTime(8)
                             };
                         }
                         rd.Close();
@@ -183,6 +186,28 @@ namespace ALICORP.Repositorios
             catch (Exception)
             {
                 throw new Exception("Ocurrio un error al momento de contar los compromisos.");
+            }
+        }
+
+        public bool Finalizar(int id, string respuesta, EstadoCompromiso estado)
+        {
+            try
+            {
+                using (var cmd = CreateCommand())
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "usp_Compromiso_Finalizar";
+
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@estado", estado);
+                    cmd.Parameters.AddWithValue("@respuesta", respuesta);
+
+                    return  cmd.ExecuteNonQuery() > 0;
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurrio un error al momento de finalizar el compromiso.");
             }
         }
     }

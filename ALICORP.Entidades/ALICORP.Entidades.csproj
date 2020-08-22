@@ -52,6 +52,12 @@
     <Compile Include="Genericos\Administracion\EstructuraArea.cs" />
     <Compile Include="Genericos\Administracion\EstructuraInstancia.cs" />
     <Compile Include="Genericos\Administracion\Instancia.cs" />
+    <Compile Include="Genericos\Compromiso\Compromiso.cs" />
+    <Compile Include="Genericos\Compromiso\CompromisoEstado.cs" />
+    <Compile Include="Genericos\ListaVerificacion\Categoria.cs" />
+    <Compile Include="Genericos\ListaVerificacion\Pregunta.cs" />
+    <Compile Include="Genericos\ListaVerificacion\Respuesta.cs" />
+    <Compile Include="Genericos\ListaVerificacion\Verificacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

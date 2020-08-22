@@ -50,7 +50,12 @@
     <Compile Include="Administracion\EstructuraInstanciaRepositorio.cs" />
     <Compile Include="Administracion\InstanciaRepositorio.cs" />
     <Compile Include="Administracion\EstructuraRepositorio.cs" />
+    <Compile Include="Compromiso\CompromisoEstadoRepositorio.cs" />
     <Compile Include="Compromiso\CompromisoRepositorio.cs" />
+    <Compile Include="ListaVerificacion\CategoriaRepositorio.cs" />
+    <Compile Include="ListaVerificacion\PreguntaRepositorio.cs" />
+    <Compile Include="ListaVerificacion\RespuestaRepositorio.cs" />
+    <Compile Include="ListaVerificacion\VerificacionRepositorio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,8 +64,6 @@
       <Name>ALICORP.Entidades</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ListaVerificacion\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

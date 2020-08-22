@@ -1,0 +1,87 @@
+﻿@model Compromiso
+@{
+    var fechas = Model.Estados.Select(x => x.FechaRegistro.Date).Distinct();
+}
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">SEGUIMIENTO COMPROMISO</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body bg-gray-light">
+            <div class="timeline mb-1">
+                @foreach (var item in fechas.OrderBy(x => x))
+                {
+                    <div class="time-label">
+                        <span class="bg-red">@item.ToString("dd MMM yyyy")</span>
+                    </div>
+
+                    foreach (var item2 in Model.Estados.Where(x => x.FechaRegistro.Date == item).OrderBy(x => x.FechaRegistro))
+                    {
+                        <div>
+                            @GetIcon(item2.Estado)
+                            <div class="timeline-item">
+                                <span class="time"><i class="fas fa-clock"></i> @item2.FechaRegistro.ToString("HH:mm")</span>
+                                @GetHeader(item2.Estado)
+                                @GetBody(item2.Estado)
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check"></i>&nbsp; Aceptar</button>
+        </div>
+    </div>
+</div>
+
+@helper GetIcon(EstadoCompromiso estado)
+{
+    switch (estado)
+    {
+        case EstadoCompromiso.NUEVO:
+            <i class="fas fa-envelope bg-blue"></i>
+            break;
+        case EstadoCompromiso.FINALIZADO:
+            <i class="fas fa-check-double bg-success"></i>
+            break;
+        default:
+            break;
+    }
+}
+
+@helper GetHeader(EstadoCompromiso estado)
+{
+    switch (estado)
+    {
+        case EstadoCompromiso.NUEVO:
+            <h3 class="timeline-header">
+                <a href="javascript:void(0)">@estado.ToString()</a> Se registro el compromiso
+            </h3>
+            break;
+        case EstadoCompromiso.FINALIZADO:
+            <h3 class="timeline-header">
+                <a href="javascript:void(0)">@estado.ToString()</a> Se finalizó el compromiso
+            </h3>
+            break;
+        default:
+            break;
+    }
+}
+
+@helper GetBody(EstadoCompromiso estado)
+{
+    switch (estado)
+    {
+        case EstadoCompromiso.FINALIZADO:
+            <div class="timeline-body">
+                @Model.Respuesta
+            </div>
+            break;
+        default:
+            break;
+    }
+}

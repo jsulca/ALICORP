@@ -1295,6 +1295,10 @@
     <Content Include="Views\Color\Index.cshtml" />
     <Content Include="Views\Compromiso\_Editar.cshtml" />
     <Content Include="Views\Empleado\Masivo.cshtml" />
+    <Content Include="Views\Compromiso\Verificacion.cshtml" />
+    <Content Include="Views\Compromiso\_Seguimiento.cshtml" />
+    <Content Include="Views\Compromiso\Gestion.cshtml" />
+    <Content Include="Views\Compromiso\_Ver.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -116,7 +116,7 @@
                                 &nbsp;
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title float-none">${item.Codigo}</h4>
+                                <h4 class="card-title float-none"><a href="javascript:void()" class="option ver" data-id="${item.Id}">${item.Codigo}</a></h4>
                                 <p class="font-weight-bold">${item.Estado}</p>
                                 <p class="card-text text-truncate">${item.Descripcion}</p>
                                 <button type="button" class="btn btn-info seguimiento" data-id="${item.Id}"><i class="fa fa-calendar-alt"></i>&nbsp; Seguimiento</button>
@@ -145,8 +145,12 @@
         });
         $('#list').delegate('button.seguimiento', 'click', function () {
             var id = this.dataset.id;
-
             index.AbrirModal('/Compromiso/Seguimiento', { id });
+        });
+
+        $('#list').delegate('a.ver', 'click', function () {
+            var id = this.dataset.id;
+            index.AbrirModal('/Compromiso/Ver', { id });
         });
 
         index.Listar(1);

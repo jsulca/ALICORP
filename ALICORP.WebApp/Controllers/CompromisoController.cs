@@ -17,7 +17,7 @@ namespace ALICORP.WebApp.Controllers
         private EstructuraLogica _estructuraLogica;
         private CompromisoLogica _compromisoLogica;
 
-        private static int _estructuraId = 16;
+        private static readonly int _estructuraId = 16;
 
         #region Acciones
 
@@ -133,10 +133,41 @@ namespace ALICORP.WebApp.Controllers
                 _compromisoLogica = new CompromisoLogica();
                 _estructuraLogica = new EstructuraLogica();
 
-                Compromiso model = _compromisoLogica.Buscar(id);
+                Compromiso model = _compromisoLogica.Buscar(id, true);
                 ViewBag.Ruta = string.Concat("/ALICORP", _estructuraLogica.Ruta(model.EstructuraId)?.ToUpper() ?? "");
 
                 return PartialView("_Seguimiento", model);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                ViewBag.Message = ex.Message;
+                return PartialView("_Error");
+            }
+        }
+
+        public ActionResult Verificacion()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Verificacion(int id, string respuesta)
+        {
+            try
+            {
+                ValidarVerificacion(id, respuesta);
+                if (ModelState.IsValid)
+                {
+                    _compromisoLogica = new CompromisoLogica();
+                    _compromisoLogica.Finalizar(id, respuesta);
+                    return Content(id.ToString());
+                }
+                else
+                {
+                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    return PartialView("_Error");
+                }
             }
             catch (Exception ex)
             {
@@ -153,7 +184,56 @@ namespace ALICORP.WebApp.Controllers
 
         public ActionResult Tablero()
         {
-            return View();
+            try
+            {
+                _estructuraLogica = new EstructuraLogica();
+                List<Estructura> tableros = _estructuraLogica.Listar(new EstructuraFiltro { Tablero = true }) ?? new List<Estructura>();
+                return View(tableros);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                ViewBag.Message = ex.Message;
+                return PartialView("_Error");
+            }
+        }
+
+        public ActionResult Gestion(int id)
+        {
+            try
+            {
+                List<Compromiso> compromisos = new List<Compromiso>();
+                return View();
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                ViewBag.Message = ex.Message;
+                return PartialView("_Error");
+            }
+        }
+
+        public ActionResult Ver(int id, bool parcial = true)
+        {
+            try
+            {
+                _compromisoLogica = new CompromisoLogica();
+                _estructuraLogica = new EstructuraLogica();
+
+                Compromiso model = _compromisoLogica.Buscar(id);
+
+                ViewBag.Tablero = string.Concat("/ALICORP", _estructuraLogica.Ruta(model.TableroId)?.ToUpper() ?? "");
+                ViewBag.Ruta = string.Concat("/ALICORP", _estructuraLogica.Ruta(model.EstructuraId)?.ToUpper() ?? "");
+
+                if (parcial) return PartialView("_Ver", model);
+                else return View(model);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                ViewBag.Message = ex.Message;
+                return PartialView("_Error");
+            }
         }
 
         public ActionResult ListarPorPagina(CompromisoFiltro filter, int pageIndex, int pageSize)
@@ -173,7 +253,8 @@ namespace ALICORP.WebApp.Controllers
                         x.Descripcion,
                         Fecha = x.FechaRegistro.ToString("dd/MM/yyyy HH:mm"),
                         Estado = x.Estado.ToString(),
-                        Nuevo = x.FechaRegistro.Date == DateTime.Today
+                        Nuevo = x.FechaRegistro.Date == DateTime.Today,
+                        Tablero = new { x.Tablero.Descripcion }
                     }),
                     totalRows
                 });
@@ -197,6 +278,14 @@ namespace ALICORP.WebApp.Controllers
             ModelState.Clear();
             if (model.Id == 0 && model.TableroId <= 0) ModelState.AddModelError("TableroId", "Es necesario seleccionar el tablero.");
             if (string.IsNullOrWhiteSpace(model.Descripcion)) ModelState.AddModelError("Descripcion", "Es necesario ingresar una breve descripción.");
+        }
+
+        [NonAction]
+        private void ValidarVerificacion(int id, string respuesta)
+        {
+            ModelState.Clear();
+            if (id == 0) ModelState.AddModelError("id", "Es necesario un identificador de compromiso.");
+            if (string.IsNullOrWhiteSpace(respuesta)) ModelState.AddModelError("respuesta", "Es necesario ingresar respuesta.");
         }
 
         #endregion
