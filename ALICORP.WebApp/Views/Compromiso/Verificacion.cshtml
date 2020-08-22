@@ -152,7 +152,10 @@
             tbody.append(rows);
         },
         Finalizar: function (id, respuesta) {
-            var model = { id, respuesta };
+            var model = {
+                'model.Id': id,
+                'model.Respuesta': respuesta
+            };
             $.ajax({
                 type: "POST",
                 url: "/Compromiso/Verificacion",

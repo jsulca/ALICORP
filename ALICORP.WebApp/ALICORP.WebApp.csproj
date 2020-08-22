@@ -1180,6 +1180,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompromisoModel.cs" />
     <Compile Include="Models\EstructuraModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

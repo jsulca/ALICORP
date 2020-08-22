@@ -88,7 +88,7 @@
             });
         },
         GenerarTabla: function (table, estructuras) {
-            var rows = [`<tr data-id="0" data-tipo="">
+            var rows = [`<tr data-id="0" data-tipo="" class="expanded">
             <td class="table-secondary"><i class="fa fa-cubes"></i>&nbsp;ALICORP</td>
             <td class="text-center" width="20"><a class="option nuevo-item text-success" title="Agregar Item"><i class="fa fa-plus"></i></a></td>
             <td width="20"></td>
@@ -105,7 +105,7 @@
             var rows = '', hijos = [];
             $.each(estructuras, (i, x) => { if (x.PadreId == padreId) hijos.push(x); });
             $.each(hijos, (i, x) => {
-                rows += `<tr data-id="${x.Id}" data-padreid="${x.PadreId || 0}">
+                rows += `<tr data-id="${x.Id}" data-padreid="${x.PadreId || 0}" class="${x.Tablero ? "collapsed" : "expanded"}">
                             <td class="${x.Tablero ? "table-success" : "table-secondary"}"><i class="fa ${x.Tablero ? "fa-table" : "fa-cubes"}"></i>&nbsp;${x.Codigo != null ? ("[" + x.Codigo + "]") : ""} ${x.Descripcion}</td>
                             <td class="text-center" width="20"><a class="option nuevo-item text-success" title="Agregar Item"><i class="fa fa-plus"></i></a></td>
                             <td class="text-center" width="20"><a class="option editar-item text-warning" title="Editar Item"><i class="fa fa-pencil-alt"></i></a></td>
@@ -113,8 +113,6 @@
                         <tr>`;
                 rows += index.ListarEstructura(x.Id, estructuras);
             });
-
-
             return rows;
         },
         AbrirModal: function (url, model) {

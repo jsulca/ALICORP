@@ -1,6 +1,7 @@
 ﻿using ALICORP.Entidades;
 using ALICORP.Entidades.Filtros;
 using ALICORP.Logicas;
+using ALICORP.WebApp.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -49,20 +50,21 @@ namespace ALICORP.WebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Nuevo(Compromiso model)
+        public ActionResult Nuevo(CompromisoModel.Nuevo model)
         {
             try
             {
                 Validar(model);
                 if (ModelState.IsValid)
                 {
-                    model.EstructuraId = _estructuraId;
-                    model.Estado = EstadoCompromiso.NUEVO;
+                    Compromiso entidad = model.Get();
+                    entidad.EstructuraId = _estructuraId;
+                    entidad.Estado = EstadoCompromiso.NUEVO;
 
                     _compromisoLogica = new CompromisoLogica();
-                    _compromisoLogica.Guardar(model);
+                    _compromisoLogica.Guardar(entidad);
 
-                    return Content(model.Id.ToString());
+                    return Content(entidad.Id.ToString());
                 }
                 else
                 {
@@ -101,15 +103,17 @@ namespace ALICORP.WebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Editar(Compromiso model)
+        public ActionResult Editar(CompromisoModel.Editar model)
         {
             try
             {
                 Validar(model);
                 if (ModelState.IsValid)
                 {
+                    Compromiso entidad = model.Get();
+
                     _compromisoLogica = new CompromisoLogica();
-                    _compromisoLogica.Actualizar(model);
+                    _compromisoLogica.Actualizar(entidad);
                     return Content(model.Id.ToString());
                 }
                 else
@@ -152,16 +156,16 @@ namespace ALICORP.WebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Verificacion(int id, string respuesta)
+        public ActionResult Verificacion(CompromisoModel.Verificar model)
         {
             try
             {
-                ValidarVerificacion(id, respuesta);
+                Validar(model);
                 if (ModelState.IsValid)
                 {
                     _compromisoLogica = new CompromisoLogica();
-                    _compromisoLogica.Finalizar(id, respuesta);
-                    return Content(id.ToString());
+                    _compromisoLogica.Finalizar(model.Id.Value, model.Respuesta);
+                    return Content(model.Id.Value.ToString());
                 }
                 else
                 {
@@ -198,7 +202,7 @@ namespace ALICORP.WebApp.Controllers
             }
         }
 
-        public ActionResult Gestion(int id)
+        public ActionResult Gestion()
         {
             try
             {
@@ -273,19 +277,27 @@ namespace ALICORP.WebApp.Controllers
         #region Metodos y Funciones
 
         [NonAction]
-        private void Validar(Compromiso model)
+        private void Validar(CompromisoModel.Editar model)
         {
             ModelState.Clear();
-            if (model.Id == 0 && model.TableroId <= 0) ModelState.AddModelError("TableroId", "Es necesario seleccionar el tablero.");
+            if(!model.Id.HasValue || model.Id.Value <= 0) ModelState.AddModelError("Id", "El compromiso no tiene un identificador.");
             if (string.IsNullOrWhiteSpace(model.Descripcion)) ModelState.AddModelError("Descripcion", "Es necesario ingresar una breve descripción.");
         }
 
         [NonAction]
-        private void ValidarVerificacion(int id, string respuesta)
+        private void Validar(CompromisoModel.Nuevo model)
         {
             ModelState.Clear();
-            if (id == 0) ModelState.AddModelError("id", "Es necesario un identificador de compromiso.");
-            if (string.IsNullOrWhiteSpace(respuesta)) ModelState.AddModelError("respuesta", "Es necesario ingresar respuesta.");
+            if(!model.TableroId.HasValue || model.TableroId.Value <= 0) ModelState.AddModelError("TableroId", "Es necesario seleccionar el tablero.");
+            if (string.IsNullOrWhiteSpace(model.Descripcion)) ModelState.AddModelError("Descripcion", "Es necesario ingresar una breve descripción.");
+        }
+
+        [NonAction]
+        private void Validar(CompromisoModel.Verificar model)
+        {
+            ModelState.Clear();
+            if (!model.Id.HasValue || model.Id.Value <= 0) ModelState.AddModelError("Id", "El compromiso no tiene un identificador.");
+            if (string.IsNullOrWhiteSpace(model.Respuesta)) ModelState.AddModelError("Respuesta", "Es necesario ingresar respuesta.");
         }
 
         #endregion
